@@ -1,4 +1,6 @@
 import Image from 'next/image'
+import Link from 'next/link'
+import Logo from './Logo'
 
 const Footer = () => {
   const footerNavs = [
@@ -23,26 +25,13 @@ const Footer = () => {
     <footer className="pt-10">
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
         <div className="space-y-6 sm:max-w-md sm:mx-auto sm:text-center">
-          <Image
-            src="https://www.floatui.com/logo.svg"
-            className="w-32 sm:mx-auto"
-            alt=""
-            width={120}
-            height={50}
-          />
-          <p>
-            Nulla auctor metus vitae lectus iaculis, vel euismod massa
-            efficitur.
-          </p>
+          <div className="flex justify-center">
+            <Logo />
+          </div>
+          <p>Start imporving your way of generating invoices today!</p>
           <div className="items-center gap-x-3 space-y-3 sm:flex sm:justify-center sm:space-y-0">
-            <a
-              href="javascript:void(0)"
-              className="block py-2 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none"
-            >
-              Let&apos;s get started
-            </a>
-            <a
-              href="javascript:void(0)"
+            <Link
+              href="/auth/login"
               className="flex items-center justify-center gap-x-2 py-2 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg md:inline-flex"
             >
               Get access
@@ -58,11 +47,13 @@ const Footer = () => {
                   clipRule="evenodd"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="mt-10 py-10 border-t items-center justify-between sm:flex">
-          <p>© {new Date().getFullYear()} Float UI Inc. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} Invoicenator Inc. All rights reserved.
+          </p>
           <ul className="flex flex-wrap items-center gap-4 mt-6 sm:text-sm sm:mt-0">
             {footerNavs.map((item, idx) => (
               <li

@@ -1,9 +1,9 @@
 'use client'
 
-import SelectClientField from '@/components/fields/SelectClientField'
-import StatusSelectField from '@/components/fields/SelectStatusField'
-import DateDueInputField from '@/components/fields/DateDueInputField'
-import InvoiceItemsFieldGroup from '@/components/fields/groups/InvoiceItemsFieldGroup'
+import SelectClient from '@/components/fields/SelectClient'
+import SelectStatus from '@/components/fields/SelectStatus'
+import InputDueDate from '@/components/fields/InputDueDate'
+import InvoiceItems from '@/components/fields/groups/InvoiceItems'
 
 export default function CreateInvoice() {
   return (
@@ -17,17 +17,17 @@ export default function CreateInvoice() {
         <div className="flex flex-col w-full">
           <h4 className="text-gray-800 text-xl font-bold mb-4">Information</h4>
           <div className="flex justify-between">
-            <SelectClientField />
+            <SelectClient />
             <div className="flex gap-4">
-              <StatusSelectField />
-              <DateDueInputField />
+              <SelectStatus />
+              <InputDueDate />
             </div>
           </div>
         </div>
 
         <div className="flex flex-col w-full py-10 gap-2">
           <h4 className="text-gray-800 text-xl font-bold mb-4">Items</h4>
-          <InvoiceItemsFieldGroup />
+          <InvoiceItems />
         </div>
 
         <div className="flex w-full justify-between items-end gap-6">

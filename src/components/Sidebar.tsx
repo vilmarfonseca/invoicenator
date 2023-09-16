@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Logo from './Logo'
 
 const Sidebar = () => {
   const navigation = [
@@ -97,14 +98,11 @@ const Sidebar = () => {
       <nav className="fixed top-0 left-0 w-full h-full border-r bg-white space-y-8 sm:w-80">
         <div className="flex flex-col h-full">
           <div className="h-20 flex items-center px-8">
-            <a href="javascript:void(0)" className="flex-none">
-              <Image
-                src="https://floatui.com/logo.svg"
-                width={140}
-                className="mx-auto"
-                alt="logo"
-              />
-            </a>
+            <Link href="/" className="flex-none">
+              <div className="flex justify-center">
+                <Logo />
+              </div>
+            </Link>
           </div>
           <div className="flex-1 flex flex-col h-full overflow-auto">
             <ul className="px-4 text-sm font-medium flex-1">
@@ -140,6 +138,8 @@ const Sidebar = () => {
                 <div className="flex items-center gap-x-4">
                   <Image
                     src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
+                    width={40}
+                    height={40}
                     className="w-12 h-12 rounded-full"
                     alt=""
                   />

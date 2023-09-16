@@ -1,18 +1,19 @@
 'use client'
 
+import Logo from '@/components/Logo'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const SignUp = () => {
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center bg-gray-50 sm:px-4">
       <div className="w-full space-y-6 text-gray-600 sm:max-w-md">
         <div className="text-center">
-          <Image
-            src="https://floatui.com/logo.svg"
-            width={150}
-            className="mx-auto"
-            alt="logo"
-          />
+          <Link href="/">
+            <div className='flex justify-center'>
+              <Logo />
+            </div>
+          </Link>
           <div className="mt-5 space-y-2">
             <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">
               Create an account

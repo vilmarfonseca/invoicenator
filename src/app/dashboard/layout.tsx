@@ -12,9 +12,9 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   return (
-    <main>
+    <>
       <Sidebar />
-      {children}
-    </main>
+      <main className="ml-80 w-[calc(100vw-20rem)] h-[100vh] py-10">{children}</main>
+    </>
   )
 }

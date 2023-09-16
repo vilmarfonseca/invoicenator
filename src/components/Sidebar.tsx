@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -97,10 +98,11 @@ const Sidebar = () => {
         <div className="flex flex-col h-full">
           <div className="h-20 flex items-center px-8">
             <a href="javascript:void(0)" className="flex-none">
-              <img
+              <Image
                 src="https://floatui.com/logo.svg"
                 width={140}
                 className="mx-auto"
+                alt="logo"
               />
             </a>
           </div>
@@ -136,9 +138,10 @@ const Sidebar = () => {
               </ul>
               <div className="py-4 px-4 border-t">
                 <div className="flex items-center gap-x-4">
-                  <img
+                  <Image
                     src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
                     className="w-12 h-12 rounded-full"
+                    alt=""
                   />
                   <div>
                     <span className="block text-gray-700 text-sm font-semibold">

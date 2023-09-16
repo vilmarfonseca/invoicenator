@@ -1,13 +1,15 @@
 import { useState } from 'react'
 
-export default () => {
-  // You can use any api to generate list of countries
+const SelectClientField = () => {
   const menuItems = ['John Doe', 'Albert Strudell', 'Alexander Cotton']
 
-  const [selectedItem, setSelectedItem] = useState<{ item: string | null, idx: number | null }>({
+  const [selectedItem, setSelectedItem] = useState<{
+    item: string | null
+    idx: number | null
+  }>({
     item: null,
     idx: null,
-  });
+  })
 
   const [state, setState] = useState(false)
 
@@ -92,6 +94,7 @@ export default () => {
                     setState(false)
                   }}
                   role="option"
+                  aria-selected={selectedItem.idx == idx}
                   className={`${
                     selectedItem.idx == idx
                       ? 'text-indigo-600 bg-indigo-50'
@@ -126,3 +129,5 @@ export default () => {
     </div>
   )
 }
+
+export default SelectClientField

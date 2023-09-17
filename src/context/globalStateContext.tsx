@@ -6,12 +6,16 @@ type GlobalContextType = {
   loading: boolean
   currentInvoice: object
   setCurrentInvoice: Function
+  saveInvoice: Function
+  invoices: Array<InvoiceType>
 }
 
 export const GlobalContext = createContext<GlobalContextType>({
   loading: true,
   currentInvoice: {},
   setCurrentInvoice: () => {},
+  saveInvoice: () => {},
+  invoices: [],
 })
 
 export function GlobalStateProvider({

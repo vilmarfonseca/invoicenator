@@ -6,15 +6,15 @@ const SelectClientField = () => {
   const menuItems = ['John Doe', 'Albert Strudell', 'Alexander Cotton']
 
   const [selectedItem, setSelectedItem] = useState<{
-    item: string | null
+    name: string | null
     id: number | null
   }>({
-    item: null,
+    name: null,
     id: null,
   })
 
   useEffect(() => {
-    if (selectedItem?.item) {
+    if (selectedItem?.name && selectedItem.name !== 'Select a client') {
       setCurrentInvoice({
         ...currentInvoice,
         ...{ client: selectedItem },
@@ -49,7 +49,7 @@ const SelectClientField = () => {
         aria-expanded="true"
         onClick={() => setState(!state)}
       >
-        {selectedItem.item || 'Select a client'}
+        {selectedItem.name || 'Select a client'}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-6 h-6 text-gray-400"
@@ -100,7 +100,7 @@ const SelectClientField = () => {
                   key={id}
                   onClick={() => {
                     setSelectedItem({
-                      item: el,
+                      name: el,
                       id,
                     })
                     setState(false)

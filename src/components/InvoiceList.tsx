@@ -1,3 +1,4 @@
+import { useGlobalState } from '@/context/globalStateContext'
 import Link from 'next/link'
 import React from 'react'
 
@@ -6,23 +7,10 @@ interface InvoiceListProps {
 }
 
 const InvoiceList: React.FC<InvoiceListProps> = ({ heading = true }) => {
-  const tableItems = [
-    {
-      invoiceNumber: '1',
-      clientName: 'Vilmar Fonseca',
-      status: 'Paid',
-      amount: '200.00',
-    },
-    {
-      invoiceNumber: '2',
-      clientName: 'Vilmar Fonseca Turbo',
-      status: 'Unpaid',
-      amount: '300.00',
-    },
-  ]
+  const { invoices } = useGlobalState()
 
   return (
-    <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+    <div className="max-w-screen-xl mx-auto">
       {heading && (
         <div className="items-start justify-between md:flex">
           <div className="max-w-lg">
@@ -47,18 +35,16 @@ const InvoiceList: React.FC<InvoiceListProps> = ({ heading = true }) => {
               <th className="py-3 px-6">Invoice #</th>
               <th className="py-3 px-6">Client Name</th>
               <th className="py-3 px-6">Status</th>
-              <th className="py-3 px-6">Total Amount</th>
+              <th className="py-3 px-6">Total</th>
               <th className="py-3 px-6"></th>
             </tr>
           </thead>
           <tbody className="text-gray-600 divide-y">
-            {tableItems.map((item, idx) => (
+            {invoices.map((item: any, idx: any) => (
               <tr key={idx}>
+                <td className="px-6 py-4 whitespace-nowrap">#{item.id}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  #{item.invoiceNumber}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  {item.clientName}
+                  {item.client.name}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span
@@ -71,7 +57,7 @@ const InvoiceList: React.FC<InvoiceListProps> = ({ heading = true }) => {
                     {item.status}
                   </span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.amount}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{item.total}</td>
                 <td className="text-right px-6 whitespace-nowrap">
                   <a
                     href="javascript:void()"

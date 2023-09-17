@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { useGlobalState } from '../../context/globalStateContext'
+import { useGlobalState } from '@/context/globalStateContext'
 
 const InvoiceItemsFieldGroup = () => {
   const { currentInvoice, setCurrentInvoice } = useGlobalState()
   const [items, setItems] = useState<{ [key: string]: string }[]>([
-    { itemName: '', description: '', quantity: '', price: '' },
+    { name: '', description: '', quantity: '', price: '' },
   ])
 
   const handleAddItem = () => {
-    setItems([
-      ...items,
-      { itemName: '', description: '', quantity: '', price: '' },
-    ])
+    setItems([...items, { name: '', description: '', quantity: '', price: '' }])
   }
 
   const handleRemoveItem = (index: number) => {
@@ -30,6 +27,8 @@ const InvoiceItemsFieldGroup = () => {
     const newItems = items.filter(
       (item) => item.price && item.quantity && item.name,
     )
+
+    console.log(newItems, 'newItems')
 
     if (newItems.length > 0) {
       setCurrentInvoice({
@@ -51,11 +50,9 @@ const InvoiceItemsFieldGroup = () => {
             <input
               type="text"
               className="w-full px-3 max-w-xs mt-2 py-2 text-gray-500 bg-white border rounded-md shadow-sm focus:border-indigo-600"
-              placeholder="Item Name"
-              value={item.itemName}
-              onChange={(e) =>
-                handleInputChange(index, 'itemName', e.target.value)
-              }
+              placeholder="Name"
+              value={item.name}
+              onChange={(e) => handleInputChange(index, 'name', e.target.value)}
             />
           </div>
           <div className="w-full">

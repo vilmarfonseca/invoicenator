@@ -36,8 +36,8 @@ export default function Invoices() {
                 </Link>
               </div>
             </div>
+            <InvoiceList heading={false} />
           </div>
-          <InvoiceList heading={false} />
         </div>
       ) : (
         <NoInvoices />

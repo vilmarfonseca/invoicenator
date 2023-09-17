@@ -1,6 +1,8 @@
+import { useGlobalState } from '@/context/globalStateContext'
 import { useEffect, useRef, useState } from 'react'
 
 const StatusSelectField = () => {
+  const { currentInvoice, setCurrentInvoice } = useGlobalState()
   const menuItems = [
     ['Undefined', 'bg-gray-600', 'text-gray-600'],
     ['Paid', 'bg-green-600', 'text-green-600'],
@@ -13,6 +15,16 @@ const StatusSelectField = () => {
   })
   const [state, setState] = useState(false)
   const selectMenuRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (selectedItem?.item) {
+      setCurrentInvoice({
+        ...currentInvoice,
+        ...{ status: selectedItem.item[0] },
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedItem])
 
   useEffect(() => {
     const handleSelectMenu = (e: MouseEvent) => {

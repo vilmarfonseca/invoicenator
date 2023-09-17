@@ -1,7 +1,7 @@
 'use client'
 
 import { emailRegExp, passwordRegExp } from '@/helpers/validation'
-import useFirebaseAuth from '@/lib/useFirebaseAuth'
+import useFirebaseAuth from '@/lib/hooks/useFirebaseAuth'
 import clsx from 'clsx'
 import { useRouter } from 'next/navigation'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'

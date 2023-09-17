@@ -1,8 +1,10 @@
+import { useGlobalState } from '@/context/globalStateContext'
 import React, { useEffect, useRef, useState } from 'react'
 
 const DateInputField = () => {
   const today = new Date().toISOString().split('T')[0]
   const [selectedDate, setSelectedDate] = useState(today)
+  const { currentInvoice, setCurrentInvoice } = useGlobalState()
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
   const dateInputRef = useRef<HTMLInputElement>(null)
 
@@ -23,6 +25,16 @@ const DateInputField = () => {
     }
   }, [])
 
+  useEffect(() => {
+    if (selectedDate) {
+      setCurrentInvoice({
+        ...currentInvoice,
+        ...{ dueDate: selectedDate },
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedDate])
+
   const toggleDatePicker = () => {
     setIsDatePickerOpen(!isDatePickerOpen)
   }
@@ -33,7 +45,7 @@ const DateInputField = () => {
 
   return (
     <div className="relative max-w-xs min-w-[200px] text-base">
-      <span className="block py-2 text-gray-500 font-bold">Date</span>
+      <span className="block py-2 text-gray-500 font-bold">Due Date</span>
       <div
         ref={dateInputRef}
         className="flex items-center justify-between gap-2 w-full px-3 py-2 text-gray-500 bg-white border rounded-md shadow-sm cursor-pointer outline-none focus:border-indigo-600"

@@ -1,9 +1,9 @@
 'use client'
-import useFirebaseAuth from '@/lib/useFirebaseAuth'
+import useFirebaseAuth from '@/lib/hooks/useFirebaseAuth'
 import { createContext, useContext } from 'react'
 
 type AuthUser = {
-  id: string
+  uid: string
   email: string
 }
 

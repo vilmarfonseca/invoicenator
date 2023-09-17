@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Logo from './Logo'
-import useFirebaseAuth from '@/lib/useFirebaseAuth'
+import useFirebaseAuth from '@/lib/hooks/useFirebaseAuth'
 
 const Sidebar = () => {
   const navigation = [

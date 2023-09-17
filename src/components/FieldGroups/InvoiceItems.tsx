@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useGlobalState } from '../../context/globalStateContext'
 
 const InvoiceItemsFieldGroup = () => {
+  const { currentInvoice, setCurrentInvoice } = useGlobalState()
   const [items, setItems] = useState<{ [key: string]: string }[]>([
     { itemName: '', description: '', quantity: '', price: '' },
   ])
@@ -23,6 +25,22 @@ const InvoiceItemsFieldGroup = () => {
     updatedItems[index][field] = value
     setItems(updatedItems)
   }
+
+  useEffect(() => {
+    const newItems = items.filter(
+      (item) => item.price && item.quantity && item.name,
+    )
+
+    if (newItems.length > 0) {
+      setCurrentInvoice({
+        ...currentInvoice,
+        ...{
+          items: newItems,
+        },
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items])
 
   return (
     <div className="flex flex-col ga-6 justify-between items-baseline w-full">
@@ -81,33 +99,7 @@ const InvoiceItemsFieldGroup = () => {
               />
             </div>
           </div>
-          {/* <input
-            type="number"
-            className="w-full px-3 py-2 text-gray-500 bg-white border rounded-md shadow-sm focus:border-indigo-600"
-            placeholder="Price"
-            value={item.price}
-            onChange={(e) => handleInputChange(index, 'price', e.target.value)}
-          /> */}
           <div className="flex gap-2 items-baseline">
-            <button
-              className="block px-4 py-3 h-full max-w-fit text-center text-white duration-150 font-medium bg-green-600 rounded-lg hover:bg-green-500 active:bg-green-700 md:text-sm whitespace-nowrap"
-              onClick={handleAddItem}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 4.5v15m7.5-7.5h-15"
-                />
-              </svg>
-            </button>
             <button
               disabled={items.length === 1}
               className="block disabled:bg-gray-500 disabled:hover:bg-gray-500 px-4 py-3 h-full max-w-fit text-center text-white duration-150 font-medium bg-red-600 rounded-lg hover:bg-red-500 active:bg-red-700 md:text-sm whitespace-nowrap"
@@ -131,6 +123,12 @@ const InvoiceItemsFieldGroup = () => {
           </div>
         </div>
       ))}
+      <button
+        className="block px-4 py-3 h-full max-w-fit text-center text-white duration-150 font-medium bg-green-600 rounded-lg hover:bg-green-500 active:bg-green-700 md:text-sm whitespace-nowrap"
+        onClick={handleAddItem}
+      >
+        Add Item
+      </button>
     </div>
   )
 }

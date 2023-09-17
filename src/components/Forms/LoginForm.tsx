@@ -1,7 +1,7 @@
 'use client'
 
 import { AuthContext } from '@/context/authContext'
-import useFirebaseAuth from '@/lib/useFirebaseAuth'
+import useFirebaseAuth from '@/lib/hooks/useFirebaseAuth'
 import clsx from 'clsx'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'

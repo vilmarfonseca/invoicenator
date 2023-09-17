@@ -1,3 +1,4 @@
+import { initializeNewUser } from '@/lib/database'
 import { auth } from '@/services/firebase'
 import {
   User,
@@ -6,6 +7,7 @@ import {
 } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useLocalStorage } from 'usehooks-ts'
 
 type AuthUserFormattedType = { uid: string; email: string }
 
@@ -40,7 +42,15 @@ export default function useFirebaseAuth() {
 
   const signup = async (email: string, password: string) => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password)
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      )
+
+      if (response?.user?.uid) {
+        initializeNewUser(response.user)
+      }
     } catch (error) {
       console.error('Error during signup:', error)
       if (error?.toString().includes('auth/email-already-in-use')) {
@@ -69,6 +79,6 @@ export default function useFirebaseAuth() {
     loading,
     login,
     logout,
-    signup
+    signup,
   }
 }

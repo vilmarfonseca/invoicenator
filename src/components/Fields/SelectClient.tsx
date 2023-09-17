@@ -1,15 +1,27 @@
-import { useState } from 'react'
+import { useGlobalState } from '@/context/globalStateContext'
+import { useEffect, useState } from 'react'
 
 const SelectClientField = () => {
+  const { currentInvoice, setCurrentInvoice } = useGlobalState()
   const menuItems = ['John Doe', 'Albert Strudell', 'Alexander Cotton']
 
   const [selectedItem, setSelectedItem] = useState<{
     item: string | null
-    idx: number | null
+    id: number | null
   }>({
     item: null,
-    idx: null,
+    id: null,
   })
+
+  useEffect(() => {
+    if (selectedItem?.item) {
+      setCurrentInvoice({
+        ...currentInvoice,
+        ...{ client: selectedItem },
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedItem])
 
   const [state, setState] = useState(false)
 
@@ -83,26 +95,24 @@ const SelectClientField = () => {
               />
             </div>
             <div className="max-h-64 mt-2 overflow-y-auto">
-              {menuItems.map((el, idx) => (
+              {menuItems.map((el, id) => (
                 <li
-                  key={idx}
+                  key={id}
                   onClick={() => {
                     setSelectedItem({
                       item: el,
-                      idx,
+                      id,
                     })
                     setState(false)
                   }}
                   role="option"
-                  aria-selected={selectedItem.idx == idx}
+                  aria-selected={selectedItem.id == id}
                   className={`${
-                    selectedItem.idx == idx
-                      ? 'text-indigo-600 bg-indigo-50'
-                      : ''
+                    selectedItem.id == id ? 'text-indigo-600 bg-indigo-50' : ''
                   } menu-el-js flex items-center justify-between px-3 cursor-default py-2 duration-150 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50`}
                 >
                   {el}
-                  {selectedItem.idx == idx ? (
+                  {selectedItem.id == id ? (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-5 h-5 text-indigo-600"

@@ -1,7 +1,7 @@
 'use client'
-import Image from 'next/image'
+import { AuthContext } from '@/context/authContext'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Logo from './Logo'
 
 type DrapdownStateType = {
@@ -19,6 +19,7 @@ type NavigationItem = {
 }
 
 const Header = () => {
+  const { currentUser }: any = useContext(AuthContext)
   const [state, setState] = useState(false)
   const [drapdownState, setDrapdownState] = useState<DrapdownStateType>({
     isActive: false,
@@ -146,20 +147,22 @@ const Header = () => {
                 )
               })}
               <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
+                {!currentUser && (
+                  <li>
+                    <Link
+                      href="/auth/login"
+                      className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
+                    >
+                      Log in
+                    </Link>
+                  </li>
+                )}
                 <li>
                   <Link
-                    href="/auth/login"
-                    className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
-                  >
-                    Log in
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/auth/sign-up"
+                    href={currentUser ? '/dashboard' : '/auth/signup'}
                     className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
                   >
-                    Get Started
+                    {currentUser ? 'Dashboard' : 'Get Started'}
                   </Link>
                 </li>
               </div>

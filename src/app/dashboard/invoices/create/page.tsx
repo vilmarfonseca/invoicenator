@@ -1,9 +1,9 @@
 'use client'
 
-import SelectClient from '@/components/fields/SelectClient'
-import SelectStatus from '@/components/fields/SelectStatus'
-import InputDueDate from '@/components/fields/InputDueDate'
-import InvoiceItems from '@/components/fields/groups/InvoiceItems'
+import SelectClient from '@/components/Fields/SelectClient'
+import SelectStatus from '@/components/Fields/SelectStatus'
+import InputDueDate from '@/components/Fields/InputDueDate'
+import InvoiceItems from '@/components/FieldGroups/InvoiceItems'
 
 export default function CreateInvoice() {
   return (

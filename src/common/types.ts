@@ -25,4 +25,5 @@ export type InvoiceType = {
   items: InvoiceItemType[]
   status: string
   total: string
+  [key: string]: any;
 }

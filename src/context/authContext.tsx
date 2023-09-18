@@ -1,14 +1,10 @@
 "use client";
+import { AuthUserType } from "@/common/types";
 import useFirebaseAuth from "@/lib/hooks/useFirebaseAuth";
 import { createContext, useContext } from "react";
 
-type AuthUser = {
-  uid: string;
-  email: string;
-};
-
 type AuthContextType = {
-  authUser: AuthUser | null;
+  authUser: AuthUserType | null;
   loading: boolean;
 };
 

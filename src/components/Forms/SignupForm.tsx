@@ -1,6 +1,6 @@
 "use client";
 
-import { emailRegExp, passwordRegExp } from "@/helpers/validation";
+import { emailRegExp, passwordRegExp } from "@/utils/validationHelpers";
 import useFirebaseAuth from "@/lib/hooks/useFirebaseAuth";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";

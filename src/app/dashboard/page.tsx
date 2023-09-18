@@ -4,9 +4,16 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import NoInvoices from "@/components/NoInvoices";
 import OverviewCards from "@/components/OverviewCards";
 import { useGlobalState } from "@/context/globalStateContext";
+import { useState } from "react";
 
 export default function Dashboard() {
   const { invoices, loading } = useGlobalState();
+  const [filter, setFilter] = useState({
+    key: '',
+    value: ""
+  })
+
+  console.log(filter)
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8">
@@ -23,8 +30,8 @@ export default function Dashboard() {
               <h3 className="text-gray-800 text-2xl font-bold">Overview</h3>
             </div>
           </div>
-          <OverviewCards />
-          <InvoiceList />
+          <OverviewCards setFilter={setFilter} />
+          <InvoiceList setFilter={setFilter} filter={filter}/>
         </>
       )}
     </div>

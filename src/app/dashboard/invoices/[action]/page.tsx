@@ -6,8 +6,7 @@ import SelectClient from '@/components/Fields/SelectClient'
 import SelectStatus from '@/components/Fields/SelectStatus'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import { useGlobalState } from '@/context/globalStateContext'
-import { notFound, useRouter, redirect } from 'next/navigation'
-import { useState } from 'react'
+import { notFound, useRouter } from 'next/navigation'
 
 interface InvoiceActionsPageProps {
   params: {
@@ -58,6 +57,14 @@ export default function InvoiceActionsPage({
     notFound()
   }
 
+  if (loading) {
+    return (
+      <div className="text-black flex w-full justify-center items-center h-full">
+        <LoadingSpinner />
+      </div>
+    )
+  }
+
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 pb-16">
       <div className="items-start justify-between border-b md:flex">
@@ -96,21 +103,13 @@ export default function InvoiceActionsPage({
               onClick={() => handleSaveInvoice()}
               className="block px-4 py-3 mt-2 h-full max-w-fit text-center text-white duration-150 font-medium bg-indigo-600 disabled:bg-gray-600 rounded-lg hover:bg-indigo-500 disabled:hover:bg-gray-500 active:bg-indigo-700 md:text-sm whitespace-nowrap"
             >
-              {loading ? (
-                <LoadingSpinner className="w-5 h-5" />
-              ) : (
-                <span>Save</span>
-              )}
+              Save
             </button>
             <button
               onClick={() => handleDeleteInvoice()}
               className="block px-4 py-3 mt-2 h-full max-w-fit text-center text-white duration-150 font-medium bg-red-600 disabled:bg-gray-600 rounded-lg hover:bg-red-500 disabled:hover:bg-gray-500 active:bg-red-700 md:text-sm whitespace-nowrap"
             >
-              {loading ? (
-                <LoadingSpinner className="w-5 h-5" />
-              ) : (
-                <span>Delete</span>
-              )}
+              Delete
             </button>
           </div>
           <div className="flex items-baseline gap-2 h-full">

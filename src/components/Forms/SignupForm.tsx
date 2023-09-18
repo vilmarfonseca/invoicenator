@@ -132,7 +132,7 @@ const SignUpForm = () => {
         </span>
       )}
 
-      <button className="w-full flex justify-center px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
+      <button className="w-full flex justify-center px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-200">
         {isSubmitting ? <LoadingSpinner /> : <span>Register</span>}
       </button>
     </form>

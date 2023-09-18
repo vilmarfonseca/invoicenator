@@ -4,14 +4,14 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Sections/Hero";
 import Prices from "@/components/Sections/Prices";
-import Stats from "@/components/Sections/Stats";
+import Customers from "@/components/Sections/Customers";
 
 export default function Home() {
   return (
     <>
       <Header />
       <Hero />
-      <Stats />
+      <Customers />
       <Features />
       <Prices />
       <Footer />

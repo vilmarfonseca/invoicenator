@@ -18,7 +18,7 @@ const StatusSelectField = () => {
       menuItems.find(
         (item) =>
           item[0].toLocaleLowerCase() ===
-          currentInvoice.status.toLocaleLowerCase(),
+          currentInvoice?.status?.toLocaleLowerCase(),
       ) ?? menuItems[0],
     idx: 0,
   })
@@ -89,7 +89,7 @@ const StatusSelectField = () => {
                 aria-selected={selectedItem.idx == idx ? true : false}
                 className={`${
                   selectedItem.idx == idx ? 'text-indigo-600 bg-indigo-50' : ''
-                } flex items-center justify-between gap-2 px-3 cursor-default py-2 duration-150 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50`}
+                } flex items-center justify-between gap-2 px-3 cursor-default py-2 duration-200 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50`}
               >
                 <div className="flex items-center gap-x-3">
                   <span className={`w-2 h-2 rounded-full ${el[1]}`}></span>

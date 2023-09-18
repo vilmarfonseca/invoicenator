@@ -17,8 +17,9 @@ const Features = () => {
           />
         </svg>
       ),
-      title: "Fast Interface",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
+      title: 'Fast Interface',
+      desc:
+        'Effortlessly create invoices with our speedy interface. Quick and efficient invoicing for your convenience.',
     },
     {
       icon: (
@@ -37,8 +38,9 @@ const Features = () => {
           />
         </svg>
       ),
-      title: "Analytics",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
+      title: 'Analytics',
+      desc:
+        'Harness financial insights for smarter invoicing decisions. Optimize your revenue stream with data-driven analytics.',
     },
     {
       icon: (
@@ -57,8 +59,9 @@ const Features = () => {
           />
         </svg>
       ),
-      title: "Datacenter security",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
+      title: 'Datacenter security',
+      desc:
+        'Secure your crucial financial data with top-tier datacenter security. Rest easy knowing your invoices are protected.',
     },
     {
       icon: (
@@ -77,8 +80,9 @@ const Features = () => {
           />
         </svg>
       ),
-      title: "Build on your terms",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
+      title: 'Build on your terms',
+      desc:
+        'Customize invoices to match your branding and needs. Tailor templates and preferences with ease.',
     },
     {
       icon: (
@@ -97,8 +101,9 @@ const Features = () => {
           />
         </svg>
       ),
-      title: "Safe to use",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
+      title: 'Safe to use',
+      desc:
+        'Invoicing security is our priority. We follow best practices to keep your invoice data safe.',
     },
     {
       icon: (
@@ -117,22 +122,19 @@ const Features = () => {
           />
         </svg>
       ),
-      title: "Flexible",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
+      title: 'Flexible',
+      desc:
+        'Adapt and scale your invoicing effortlessly. Grow your operations as your business expands.',
     },
-  ];
+  ]
 
   return (
-    <section className="py-24">
+    <section id="features" className="py-24">
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
         <div className="max-w-xl mx-auto space-y-3 sm:text-center">
           <h3 className="text-indigo-600 font-semibold">Features</h3>
           <p className="text-gray-800 text-3xl font-semibold sm:text-4xl">
             Do more with less complexity
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            congue, nisl eget molestie varius, enim ex faucibus purus
           </p>
         </div>
         <div className="mt-12">
@@ -154,7 +156,7 @@ const Features = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Features;
+export default Features

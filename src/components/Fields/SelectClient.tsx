@@ -86,7 +86,7 @@ const SelectClientField = () => {
                   aria-selected={selectedItem.id == id}
                   className={`${
                     selectedItem.id == id ? "text-indigo-600 bg-indigo-50" : ""
-                  } menu-el-js flex items-center justify-between px-3 cursor-default py-2 duration-150 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50`}
+                  } menu-el-js flex items-center justify-between px-3 cursor-default py-2 duration-200 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50`}
                 >
                   {el}
                   {selectedItem.id == id ? <CheckIcon /> : ""}

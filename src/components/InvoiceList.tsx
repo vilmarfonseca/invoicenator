@@ -49,14 +49,14 @@ const InvoiceList: React.FC<InvoiceListProps> = ({
             {filter?.value && (
               <button
                 onClick={() => setFilter(null)}
-                className="block py-2 px-4 text-gray-700 hover:bg-gray-50 font-medium duration-150 active:bg-gray-100 border rounded-lg md:text-sm"
+                className="block py-2 px-4 text-gray-700 hover:bg-gray-50 font-medium duration-200 active:bg-gray-100 border rounded-lg md:text-sm"
               >
                 Reset Filters
               </button>
             )}
             <Link
               href="/dashboard/invoices/create"
-              className="flex items-center px-4 py-2 text-white duration-150 font-medium bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700 md:text-sm"
+              className="flex items-center px-4 py-2 text-white duration-200 font-medium bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700 md:text-sm"
             >
               Create Invoice
             </Link>
@@ -105,7 +105,7 @@ const InvoiceList: React.FC<InvoiceListProps> = ({
                 <td className="text-right px-6 whitespace-nowrap">
                   <button
                     onClick={() => handleinvoiceClick(invoice)}
-                    className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"
+                    className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-200 hover:bg-gray-50 rounded-lg"
                   >
                     Edit
                   </button>

@@ -48,7 +48,7 @@ const Prices = () => {
   ];
 
   return (
-    <section className="py-24">
+    <section id="pricing" className="py-24">
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
         <div className="relative max-w-xl mx-auto sm:text-center">
           <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
@@ -83,7 +83,7 @@ const Prices = () => {
                   <span className="text-xl text-gray-600 font-normal">/mo</span>
                 </div>
                 <p>{item.desc}</p>
-                <button className="px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700">
+                <button className="px-3 py-3 rounded-lg w-full font-semibold text-sm duration-200 text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700">
                   Get Started
                 </button>
               </div>

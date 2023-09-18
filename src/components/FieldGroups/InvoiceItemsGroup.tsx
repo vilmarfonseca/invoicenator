@@ -100,7 +100,7 @@ const InvoiceItemsGroup = () => {
           <div className="flex gap-2 items-baseline">
             <button
               disabled={items.length === 1}
-              className="block disabled:bg-gray-500 disabled:hover:bg-gray-500 px-4 py-3 h-full max-w-fit text-center text-white duration-150 font-medium bg-red-600 rounded-lg hover:bg-red-500 active:bg-red-700 md:text-sm whitespace-nowrap"
+              className="block disabled:bg-gray-500 disabled:hover:bg-gray-500 px-4 py-3 h-full max-w-fit text-center text-white duration-200 font-medium bg-red-600 rounded-lg hover:bg-red-500 active:bg-red-700 md:text-sm whitespace-nowrap"
               onClick={() => handleRemoveItem(index)}
             >
               <DeleteIcon />
@@ -109,7 +109,7 @@ const InvoiceItemsGroup = () => {
         </div>
       ))}
       <button
-        className="block px-4 py-3 h-full max-w-fit text-center text-white duration-150 font-medium bg-green-600 rounded-lg hover:bg-green-500 active:bg-green-700 md:text-sm whitespace-nowrap"
+        className="block px-4 py-3 h-full max-w-fit text-center text-white duration-200 font-medium bg-green-600 rounded-lg hover:bg-green-500 active:bg-green-700 md:text-sm whitespace-nowrap"
         onClick={handleAddItem}
       >
         Add Item

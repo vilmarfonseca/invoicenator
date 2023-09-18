@@ -32,7 +32,7 @@ const Footer = () => {
           <div className="items-center gap-x-3 space-y-3 sm:flex sm:justify-center sm:space-y-0">
             <Link
               href="/auth/login"
-              className="flex items-center justify-center gap-x-2 py-2 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg md:inline-flex"
+              className="flex items-center justify-center gap-x-2 py-2 px-4 text-gray-700 hover:text-gray-500 font-medium duration-200 active:bg-gray-100 border rounded-lg md:inline-flex"
             >
               Get access
               <svg
@@ -58,7 +58,7 @@ const Footer = () => {
             {footerNavs.map((item, idx) => (
               <li
                 key={`nav-item-${idx}`}
-                className="text-gray-800 hover:text-gray-500 duration-150"
+                className="text-gray-800 hover:text-gray-500 duration-200"
               >
                 <a key={idx} href={item.href}>
                   {item.name}

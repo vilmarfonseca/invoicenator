@@ -30,7 +30,7 @@ export default function Invoices() {
               <div className="mt-6 md:mt-0">
                 <Link
                   href="/dashboard/invoices/create"
-                  className="block px-4 py-2 text-center text-white duration-150 font-medium bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700 md:text-sm"
+                  className="block px-4 py-2 text-center text-white duration-200 font-medium bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700 md:text-sm"
                 >
                   Create Invoice
                 </Link>

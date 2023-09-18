@@ -48,7 +48,7 @@ const Sidebar = () => {
                 <li key={idx}>
                   <Link
                     href={item.href}
-                    className={`flex items-center gap-x-2 text-gray-600 p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 duration-150 ${
+                    className={`flex items-center gap-x-2 text-gray-600 p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 duration-200 ${
                       pathname === item.href ? "bg-gray-100" : ""
                     } `}
                   >
@@ -63,7 +63,7 @@ const Sidebar = () => {
                 <li>
                   <button
                     onClick={() => logout()}
-                    className="flex items-center gap-x-2 text-gray-600 p-2 rounded-lg  hover:bg-gray-50 active:bg-gray-100 duration-150"
+                    className="flex items-center gap-x-2 text-gray-600 p-2 rounded-lg  hover:bg-gray-50 active:bg-gray-100 duration-200"
                   >
                     <div className="text-gray-500">
                       {" "}

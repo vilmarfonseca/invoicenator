@@ -101,13 +101,13 @@ export default function InvoiceActionsPage({
                 !currentInvoice.dueDate
               }
               onClick={() => handleSaveInvoice()}
-              className="block px-4 py-3 mt-2 h-full max-w-fit text-center text-white duration-150 font-medium bg-indigo-600 disabled:bg-gray-600 rounded-lg hover:bg-indigo-500 disabled:hover:bg-gray-500 active:bg-indigo-700 md:text-sm whitespace-nowrap"
+              className="block px-4 py-3 mt-2 h-full max-w-fit text-center text-white duration-200 font-medium bg-indigo-600 disabled:bg-gray-600 rounded-lg hover:bg-indigo-500 disabled:hover:bg-gray-500 active:bg-indigo-700 md:text-sm whitespace-nowrap"
             >
               Save
             </button>
             <button
               onClick={() => handleDeleteInvoice()}
-              className="block px-4 py-3 mt-2 h-full max-w-fit text-center text-white duration-150 font-medium bg-red-600 disabled:bg-gray-600 rounded-lg hover:bg-red-500 disabled:hover:bg-gray-500 active:bg-red-700 md:text-sm whitespace-nowrap"
+              className="block px-4 py-3 mt-2 h-full max-w-fit text-center text-white duration-200 font-medium bg-red-600 disabled:bg-gray-600 rounded-lg hover:bg-red-500 disabled:hover:bg-gray-500 active:bg-red-700 md:text-sm whitespace-nowrap"
             >
               Delete
             </button>

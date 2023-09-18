@@ -1,3 +1,6 @@
+import CheckIcon from '@/components/Icons/ChcekIcon'
+import SearchIcon from '@/components/Icons/SearchIcon'
+import UpDownHandleIcon from '@/components/Icons/UpDownHandleIcon'
 import { useGlobalState } from '@/context/globalStateContext'
 import { useEffect, useState } from 'react'
 
@@ -50,20 +53,7 @@ const SelectClientField = () => {
         onClick={() => setState(!state)}
       >
         {selectedItem.name || 'Select a client'}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6 text-gray-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M8 9l4-4 4 4m0 6l-4 4-4-4"
-          />
-        </svg>
+        <UpDownHandleIcon />
       </button>
 
       {state ? (
@@ -73,20 +63,7 @@ const SelectClientField = () => {
             role="listbox"
           >
             <div className="shadow flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 mx-3 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
+              <SearchIcon />
               <input
                 type="text"
                 placeholder="Search"
@@ -112,22 +89,7 @@ const SelectClientField = () => {
                   } menu-el-js flex items-center justify-between px-3 cursor-default py-2 duration-150 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50`}
                 >
                   {el}
-                  {selectedItem.id == id ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5 text-indigo-600"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  ) : (
-                    ''
-                  )}
+                  {selectedItem.id == id ? <CheckIcon /> : ''}
                 </li>
               ))}
             </div>

@@ -1,3 +1,5 @@
+import CheckIcon from '@/components/Icons/ChcekIcon'
+import SelectDownHandleIcon from '@/components/Icons/SelectDownHandle'
 import { useGlobalState } from '@/context/globalStateContext'
 import { useEffect, useRef, useState } from 'react'
 
@@ -51,7 +53,6 @@ const StatusSelectField = () => {
         onClick={() => setState(!state)}
       >
         <div className="flex items-center gap-x-3">
-          {/* Status{' '} */}
           <span
             className={`w-2 h-2 rounded-full ${selectedItem.item[1]}`}
           ></span>
@@ -59,18 +60,7 @@ const StatusSelectField = () => {
             {selectedItem.item[0]}
           </span>
         </div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          className="w-5 h-5 text-gray-400"
-        >
-          <path
-            fillRule="evenodd"
-            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-            clipRule="evenodd"
-          />
-        </svg>
+        <SelectDownHandleIcon />
       </button>
 
       {state ? (
@@ -98,22 +88,7 @@ const StatusSelectField = () => {
                   <span className={`w-2 h-2 rounded-full ${el[1]}`}></span>
                   {el[0]}
                 </div>
-                {selectedItem.idx == idx ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-indigo-600"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                ) : (
-                  ''
-                )}
+                {selectedItem.idx == idx ? <CheckIcon /> : ''}
               </li>
             ))}
           </ul>

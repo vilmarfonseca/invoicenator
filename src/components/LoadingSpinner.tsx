@@ -1,4 +1,8 @@
-export default function LoadingSpinner() {
+interface LoadingSpinnerProps {
+  className?: string
+}
+
+export default function LoadingSpinner({ className }: LoadingSpinnerProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +10,7 @@ export default function LoadingSpinner() {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="w-10 h-10 animate-spin"
+      className={`${className ?? 'w-10 h-10'} animate-spin`}
     >
       <path
         strokeLinecap="round"

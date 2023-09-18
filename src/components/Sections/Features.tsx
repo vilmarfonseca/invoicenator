@@ -17,7 +17,7 @@ const Features = () => {
           />
         </svg>
       ),
-      title: 'Fast Refresh',
+      title: 'Fast Interface',
       desc:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.',
     },

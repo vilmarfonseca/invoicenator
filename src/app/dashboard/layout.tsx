@@ -2,13 +2,7 @@
 import Sidebar from '@/components/Sidebar'
 import { useAuth } from '@/context/authContext'
 import { useRouter } from 'next/navigation'
-
-import type { Metadata } from 'next'
 import { useEffect } from 'react'
-
-// export const metadata: Metadata = {
-//   title: 'Invoicenator | Dashboard',
-// }
 
 export default function DashboardLayout({
   children,

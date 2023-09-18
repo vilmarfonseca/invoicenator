@@ -27,9 +27,9 @@ const Header = () => {
   })
 
   const navigation: NavigationItem[] = [
-    { title: 'Customers', path: 'javascript:void(0)' },
-    { title: 'Features', path: 'javascript:void(0)' },
-    { title: 'Pricing', path: 'javascript:void(0)' },
+    { title: 'Customers', path: '#' },
+    { title: 'Features', path: '#' },
+    { title: 'Pricing', path: '#' },
   ]
 
   useEffect(() => {

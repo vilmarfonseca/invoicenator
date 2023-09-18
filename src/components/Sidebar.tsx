@@ -1,35 +1,35 @@
-'use client'
-import DashboardIcon from '@/components/Icons/DashboradIcon'
-import InvoicesIcon from '@/components/Icons/InvoicesIcon'
-import LogoutIcon from '@/components/Icons/LogoutIcon'
-import UsersIcon from '@/components/Icons/UsersIcon'
-import Logo from '@/components/Logo'
-import useFirebaseAuth from '@/lib/hooks/useFirebaseAuth'
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+"use client";
+import DashboardIcon from "@/components/Icons/DashboradIcon";
+import InvoicesIcon from "@/components/Icons/InvoicesIcon";
+import LogoutIcon from "@/components/Icons/LogoutIcon";
+import UsersIcon from "@/components/Icons/UsersIcon";
+import Logo from "@/components/Logo";
+import useFirebaseAuth from "@/lib/hooks/useFirebaseAuth";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Sidebar = () => {
   const navigation = [
     {
-      href: '/dashboard',
-      name: 'Overview',
+      href: "/dashboard",
+      name: "Overview",
       icon: <DashboardIcon />,
     },
     {
-      href: '/dashboard/invoices',
-      name: 'Invoices',
+      href: "/dashboard/invoices",
+      name: "Invoices",
       icon: <InvoicesIcon />,
     },
     {
-      href: '/clients',
-      name: 'Clients',
+      href: "/clients",
+      name: "Clients",
       icon: <UsersIcon />,
     },
-  ]
+  ];
 
-  const { logout, authUser } = useFirebaseAuth()
-  const pathname = usePathname()
+  const { logout, authUser } = useFirebaseAuth();
+  const pathname = usePathname();
 
   return (
     <>
@@ -49,7 +49,7 @@ const Sidebar = () => {
                   <Link
                     href={item.href}
                     className={`flex items-center gap-x-2 text-gray-600 p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 duration-150 ${
-                      pathname === item.href ? 'bg-gray-100' : ''
+                      pathname === item.href ? "bg-gray-100" : ""
                     } `}
                   >
                     <div className="text-gray-500">{item.icon}</div>
@@ -66,7 +66,7 @@ const Sidebar = () => {
                     className="flex items-center gap-x-2 text-gray-600 p-2 rounded-lg  hover:bg-gray-50 active:bg-gray-100 duration-150"
                   >
                     <div className="text-gray-500">
-                      {' '}
+                      {" "}
                       <LogoutIcon />
                     </div>
                     Logout
@@ -97,7 +97,7 @@ const Sidebar = () => {
         </div>
       </nav>
     </>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

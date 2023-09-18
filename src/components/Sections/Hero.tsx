@@ -1,5 +1,5 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -10,7 +10,7 @@ const Hero = () => {
             Build products for everyone
           </h1>
           <h2 className="text-4xl text-gray-800 font-extrabold mx-auto md:text-5xl">
-            Design your projects faster with{' '}
+            Design your projects faster with{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4F46E5] to-[#E114E5]">
               the largest figma UI kit
             </span>
@@ -39,7 +39,7 @@ const Hero = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

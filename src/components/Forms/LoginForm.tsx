@@ -1,34 +1,34 @@
-'use client'
+"use client";
 
-import useFirebaseAuth from '@/lib/hooks/useFirebaseAuth'
-import clsx from 'clsx'
-import { useRouter } from 'next/navigation'
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import LoadingSpinner from '../LoadingSpinner'
+import useFirebaseAuth from "@/lib/hooks/useFirebaseAuth";
+import clsx from "clsx";
+import { useRouter } from "next/navigation";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import LoadingSpinner from "../LoadingSpinner";
 
 const LoginForm = () => {
-  const { login } = useFirebaseAuth()
+  const { login } = useFirebaseAuth();
 
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     handleSubmit,
     formState: { errors, isSubmitting },
     register,
-  } = useForm()
+  } = useForm();
 
   const handleRegister: SubmitHandler<FieldValues> = async ({
     email,
     password,
   }) => {
     try {
-      await login(email, password)
-      router.push('/dashboard')
+      await login(email, password);
+      router.push("/dashboard");
     } catch (error) {
-      console.error(error)
-      throw error
+      console.error(error);
+      throw error;
     }
-  }
+  };
 
   return (
     <form
@@ -41,12 +41,12 @@ const LoginForm = () => {
         <input
           type="email"
           required
-          {...register('email', {
-            required: 'Email is Required',
+          {...register("email", {
+            required: "Email is Required",
           })}
           className={clsx(
-            errors.email ? 'focus:border-red-600' : 'focus:border-indigo-600',
-            'w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg',
+            errors.email ? "focus:border-red-600" : "focus:border-indigo-600",
+            "w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg",
           )}
         />
       </div>
@@ -62,11 +62,11 @@ const LoginForm = () => {
           type="password"
           required
           className={clsx(
-            errors.email ? 'focus:border-red-600' : 'focus:border-indigo-600',
-            'w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg',
+            errors.email ? "focus:border-red-600" : "focus:border-indigo-600",
+            "w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg",
           )}
-          {...register('password', {
-            required: 'This field is required',
+          {...register("password", {
+            required: "This field is required",
           })}
         />
       </div>
@@ -84,7 +84,7 @@ const LoginForm = () => {
         )}
       </button>
     </form>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

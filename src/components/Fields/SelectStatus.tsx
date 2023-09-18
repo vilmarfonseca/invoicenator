@@ -1,32 +1,32 @@
-import CheckIcon from '@/components/Icons/ChcekIcon'
-import SelectDownHandleIcon from '@/components/Icons/SelectDownHandle'
-import { useGlobalState } from '@/context/globalStateContext'
-import { useEffect, useRef, useState } from 'react'
+import CheckIcon from "@/components/Icons/ChcekIcon";
+import SelectDownHandleIcon from "@/components/Icons/SelectDownHandle";
+import { useGlobalState } from "@/context/globalStateContext";
+import { useEffect, useRef, useState } from "react";
 
 const StatusSelectField = () => {
-  const { currentInvoice, setCurrentInvoice } = useGlobalState()
+  const { currentInvoice, setCurrentInvoice } = useGlobalState();
   const menuItems = [
-    ['Undefined', 'bg-gray-600', 'text-gray-600'],
-    ['Paid', 'bg-green-600', 'text-green-600'],
-    ['Unpaid', 'bg-red-600', 'text-red-600'],
-  ]
+    ["Undefined", "bg-gray-600", "text-gray-600"],
+    ["Paid", "bg-green-600", "text-green-600"],
+    ["Unpaid", "bg-red-600", "text-red-600"],
+  ];
 
   const [selectedItem, setSelectedItem] = useState({
     item: menuItems[0],
     idx: 0,
-  })
-  const [state, setState] = useState(false)
-  const selectMenuRef = useRef<HTMLButtonElement>(null)
+  });
+  const [state, setState] = useState(false);
+  const selectMenuRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (selectedItem?.item) {
       setCurrentInvoice({
         ...currentInvoice,
         ...{ status: selectedItem.item[0] },
-      })
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedItem])
+  }, [selectedItem]);
 
   useEffect(() => {
     const handleSelectMenu = (e: MouseEvent) => {
@@ -34,12 +34,12 @@ const StatusSelectField = () => {
         selectMenuRef.current &&
         !selectMenuRef.current.contains(e.target as Node)
       ) {
-        setState(false)
+        setState(false);
       }
-    }
+    };
 
-    document.addEventListener('click', handleSelectMenu)
-  }, [])
+    document.addEventListener("click", handleSelectMenu);
+  }, []);
 
   return (
     <div className="relative max-w-xs min-w-[200px] text-base">
@@ -81,23 +81,23 @@ const StatusSelectField = () => {
                 role="option"
                 aria-selected={selectedItem.idx == idx ? true : false}
                 className={`${
-                  selectedItem.idx == idx ? 'text-indigo-600 bg-indigo-50' : ''
+                  selectedItem.idx == idx ? "text-indigo-600 bg-indigo-50" : ""
                 } flex items-center justify-between gap-2 px-3 cursor-default py-2 duration-150 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50`}
               >
                 <div className="flex items-center gap-x-3">
                   <span className={`w-2 h-2 rounded-full ${el[1]}`}></span>
                   {el[0]}
                 </div>
-                {selectedItem.idx == idx ? <CheckIcon /> : ''}
+                {selectedItem.idx == idx ? <CheckIcon /> : ""}
               </li>
             ))}
           </ul>
         </div>
       ) : (
-        ''
+        ""
       )}
     </div>
-  )
-}
+  );
+};
 
-export default StatusSelectField
+export default StatusSelectField;

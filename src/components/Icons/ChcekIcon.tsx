@@ -12,5 +12,5 @@ export default function CheckIcon() {
         clipRule="evenodd"
       />
     </svg>
-  )
+  );
 }

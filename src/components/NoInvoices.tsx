@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 const NoInvoices = () => {
   return (
@@ -21,7 +21,7 @@ const NoInvoices = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NoInvoices
+export default NoInvoices;

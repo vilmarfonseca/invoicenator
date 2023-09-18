@@ -1,18 +1,18 @@
-'use client'
+"use client";
 
-import LoginForm from '@/components/Forms/LoginForm'
-import Logo from '@/components/Logo'
-import { AuthContext } from '@/context/authContext'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useContext } from 'react'
+import LoginForm from "@/components/Forms/LoginForm";
+import Logo from "@/components/Logo";
+import { AuthContext } from "@/context/authContext";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useContext } from "react";
 
 const Login = () => {
-  const router = useRouter()
-  const { currentUser }: any = useContext(AuthContext)
+  const router = useRouter();
+  const { currentUser }: any = useContext(AuthContext);
 
   if (currentUser) {
-    router.push('/dashboard')
+    router.push("/dashboard");
   }
 
   return (
@@ -35,7 +35,7 @@ const Login = () => {
         </div>
         <div className="text-center">
           <p className="">
-            Don&apos;t have an account?{' '}
+            Don&apos;t have an account?{" "}
             <a
               href="/auth/signup"
               className="font-medium text-indigo-600 hover:text-indigo-500"
@@ -46,7 +46,7 @@ const Login = () => {
         </div>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

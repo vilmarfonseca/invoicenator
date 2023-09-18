@@ -1,16 +1,16 @@
-'use client'
+"use client";
 
-import { emailRegExp, passwordRegExp } from '@/helpers/validation'
-import useFirebaseAuth from '@/lib/hooks/useFirebaseAuth'
-import clsx from 'clsx'
-import { useRouter } from 'next/navigation'
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import LoadingSpinner from '../LoadingSpinner'
+import { emailRegExp, passwordRegExp } from "@/helpers/validation";
+import useFirebaseAuth from "@/lib/hooks/useFirebaseAuth";
+import clsx from "clsx";
+import { useRouter } from "next/navigation";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import LoadingSpinner from "../LoadingSpinner";
 
 const SignUpForm = () => {
-  const { signup } = useFirebaseAuth()
+  const { signup } = useFirebaseAuth();
 
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     handleSubmit,
@@ -18,20 +18,20 @@ const SignUpForm = () => {
     trigger,
     register,
     watch,
-  } = useForm()
+  } = useForm();
 
   const handleRegister: SubmitHandler<FieldValues> = async ({
     email,
     password,
   }) => {
     try {
-      await signup(email, password)
-      router.push('/dashboard')
+      await signup(email, password);
+      router.push("/dashboard");
     } catch (error) {
-      console.log(error)
-      throw error
+      console.log(error);
+      throw error;
     }
-  }
+  };
 
   return (
     <form
@@ -44,19 +44,19 @@ const SignUpForm = () => {
         <input
           type="email"
           required
-          {...register('email', {
-            required: 'Email is Required',
+          {...register("email", {
+            required: "Email is Required",
             pattern: {
               value: emailRegExp,
-              message: 'Invalid email address',
+              message: "Invalid email address",
             },
           })}
           onKeyUp={() => {
-            trigger('email')
+            trigger("email");
           }}
           className={clsx(
-            errors.email ? 'focus:border-red-600' : 'focus:border-indigo-600',
-            'w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg',
+            errors.email ? "focus:border-red-600" : "focus:border-indigo-600",
+            "w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg",
           )}
         />
       </div>
@@ -72,27 +72,27 @@ const SignUpForm = () => {
           type="password"
           required
           className={clsx(
-            errors.email ? 'focus:border-red-600' : 'focus:border-indigo-600',
-            'w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg',
+            errors.email ? "focus:border-red-600" : "focus:border-indigo-600",
+            "w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg",
           )}
-          {...register('password', {
-            required: 'You must specify a password',
+          {...register("password", {
+            required: "You must specify a password",
             pattern: {
               value: passwordRegExp,
               message:
-                'Password should contain at least one uppercase letter, one lowercase letter, one number and one special character.',
+                "Password should contain at least one uppercase letter, one lowercase letter, one number and one special character.",
             },
             minLength: {
               value: 8,
-              message: 'Password must be more than 8 characters',
+              message: "Password must be more than 8 characters",
             },
             maxLength: {
               value: 20,
-              message: 'Password must be less than 12 characters',
+              message: "Password must be less than 12 characters",
             },
           })}
           onKeyUp={() => {
-            trigger('password')
+            trigger("password");
           }}
         />
       </div>
@@ -109,20 +109,20 @@ const SignUpForm = () => {
           type="password"
           required
           className={clsx(
-            errors.email ? 'focus:border-red-600' : 'focus:border-indigo-600',
-            'w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg',
+            errors.email ? "focus:border-red-600" : "focus:border-indigo-600",
+            "w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg",
           )}
-          {...register('confirmPassword', {
-            required: 'This field is required',
+          {...register("confirmPassword", {
+            required: "This field is required",
             validate: (value) =>
-              value === watch('password', '') || 'The passwords do not match',
+              value === watch("password", "") || "The passwords do not match",
           })}
           onPaste={(e) => {
-            e.preventDefault()
-            return false
+            e.preventDefault();
+            return false;
           }}
           onKeyUp={() => {
-            trigger('confirmPassword')
+            trigger("confirmPassword");
           }}
         />
       </div>
@@ -136,7 +136,7 @@ const SignUpForm = () => {
         {isSubmitting ? <LoadingSpinner /> : <span>Register</span>}
       </button>
     </form>
-  )
-}
+  );
+};
 
-export default SignUpForm
+export default SignUpForm;

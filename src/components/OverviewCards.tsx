@@ -1,28 +1,28 @@
-import BalanceIcon from '@/components/Icons/BalanceIcon'
-import TotalPaidIcon from '@/components/Icons/TotalPaidIcon'
-import TotalUnpaidIcon from '@/components/Icons/TotalUnpaidIcon'
+import BalanceIcon from "@/components/Icons/BalanceIcon";
+import TotalPaidIcon from "@/components/Icons/TotalPaidIcon";
+import TotalUnpaidIcon from "@/components/Icons/TotalUnpaidIcon";
 
 const OverviewCards = () => {
   const cards = [
     {
-      eyebrow: 'Balance',
-      displayValue: '100.00',
-      textColor: 'text-gray-600',
+      eyebrow: "Balance",
+      displayValue: "100.00",
+      textColor: "text-gray-600",
       icon: <BalanceIcon />,
     },
     {
-      eyebrow: 'Total Paid',
-      displayValue: '100.00',
-      textColor: 'text-green-500',
+      eyebrow: "Total Paid",
+      displayValue: "100.00",
+      textColor: "text-green-500",
       icon: <TotalPaidIcon />,
     },
     {
-      eyebrow: 'Total Unpaid',
-      displayValue: '100.00',
-      textColor: 'text-red-500',
+      eyebrow: "Total Unpaid",
+      displayValue: "100.00",
+      textColor: "text-red-500",
       icon: <TotalUnpaidIcon />,
     },
-  ]
+  ];
 
   return (
     <section className="mt-12 mx-auto max-w-screen-xl pb-20">
@@ -47,7 +47,7 @@ const OverviewCards = () => {
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default OverviewCards
+export default OverviewCards;

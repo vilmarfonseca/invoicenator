@@ -1,19 +1,19 @@
-import { useGlobalState } from '@/context/globalStateContext'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import React from 'react'
+import { useGlobalState } from "@/context/globalStateContext";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 interface InvoiceListProps {
-  heading?: boolean
+  heading?: boolean;
 }
 
 const InvoiceList: React.FC<InvoiceListProps> = ({ heading = true }) => {
-  const router = useRouter()
-  const { invoices, setCurrentInvoice } = useGlobalState()
+  const router = useRouter();
+  const { invoices, setCurrentInvoice } = useGlobalState();
 
   async function handleinvoiceClick(invoice: any) {
-    setCurrentInvoice(invoice)
-    router.push('/dashboard/invoices/edit')
+    setCurrentInvoice(invoice);
+    router.push("/dashboard/invoices/edit");
   }
 
   return (
@@ -56,9 +56,9 @@ const InvoiceList: React.FC<InvoiceListProps> = ({ heading = true }) => {
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span
                     className={`px-3 py-2 rounded-full font-semibold text-xs ${
-                      invoice.status == 'Paid'
-                        ? 'text-green-600 bg-green-100'
-                        : 'text-red-600 bg-red-100'
+                      invoice.status == "Paid"
+                        ? "text-green-600 bg-green-100"
+                        : "text-red-600 bg-red-100"
                     }`}
                   >
                     {invoice.status}
@@ -81,7 +81,7 @@ const InvoiceList: React.FC<InvoiceListProps> = ({ heading = true }) => {
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default InvoiceList
+export default InvoiceList;

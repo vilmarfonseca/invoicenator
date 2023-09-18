@@ -1,47 +1,47 @@
-import CheckIcon from '@/components/Icons/ChcekIcon'
-import SearchIcon from '@/components/Icons/SearchIcon'
-import UpDownHandleIcon from '@/components/Icons/UpDownHandleIcon'
-import { useGlobalState } from '@/context/globalStateContext'
-import { useEffect, useState } from 'react'
+import CheckIcon from "@/components/Icons/ChcekIcon";
+import SearchIcon from "@/components/Icons/SearchIcon";
+import UpDownHandleIcon from "@/components/Icons/UpDownHandleIcon";
+import { useGlobalState } from "@/context/globalStateContext";
+import { useEffect, useState } from "react";
 
 const SelectClientField = () => {
-  const { currentInvoice, setCurrentInvoice } = useGlobalState()
-  const menuItems = ['John Doe', 'Albert Strudell', 'Alexander Cotton']
+  const { currentInvoice, setCurrentInvoice } = useGlobalState();
+  const menuItems = ["John Doe", "Albert Strudell", "Alexander Cotton"];
 
   const [selectedItem, setSelectedItem] = useState<{
-    name: string | null
-    id: number | null
+    name: string | null;
+    id: number | null;
   }>({
     name: currentInvoice?.client?.name ?? null,
     id: currentInvoice?.client?.id ?? null,
-  })
+  });
 
   useEffect(() => {
-    if (selectedItem?.name && selectedItem.name !== 'Select a client') {
+    if (selectedItem?.name && selectedItem.name !== "Select a client") {
       setCurrentInvoice({
         ...currentInvoice,
         ...{ client: selectedItem },
-      })
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedItem])
+  }, [selectedItem]);
 
-  const [state, setState] = useState(false)
+  const [state, setState] = useState(false);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const menuEls = document.querySelectorAll('.menu-el-js')
-    const searchVal = e.target.value.toLocaleLowerCase()
+    const menuEls = document.querySelectorAll(".menu-el-js");
+    const searchVal = e.target.value.toLocaleLowerCase();
 
     menuEls.forEach((el) => {
-      el.classList.remove('hidden')
+      el.classList.remove("hidden");
       if (
         el.textContent &&
         !el.textContent.toLocaleLowerCase().includes(searchVal)
       ) {
-        el.classList.add('hidden')
+        el.classList.add("hidden");
       }
-    })
-  }
+    });
+  };
 
   return (
     <div className="relative max-w-sm min-w-[250px] text-[15px]">
@@ -52,7 +52,7 @@ const SelectClientField = () => {
         aria-expanded="true"
         onClick={() => setState(!state)}
       >
-        {selectedItem.name || 'Select a client'}
+        {selectedItem.name || "Select a client"}
         <UpDownHandleIcon />
       </button>
 
@@ -79,27 +79,27 @@ const SelectClientField = () => {
                     setSelectedItem({
                       name: el,
                       id,
-                    })
-                    setState(false)
+                    });
+                    setState(false);
                   }}
                   role="option"
                   aria-selected={selectedItem.id == id}
                   className={`${
-                    selectedItem.id == id ? 'text-indigo-600 bg-indigo-50' : ''
+                    selectedItem.id == id ? "text-indigo-600 bg-indigo-50" : ""
                   } menu-el-js flex items-center justify-between px-3 cursor-default py-2 duration-150 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50`}
                 >
                   {el}
-                  {selectedItem.id == id ? <CheckIcon /> : ''}
+                  {selectedItem.id == id ? <CheckIcon /> : ""}
                 </li>
               ))}
             </div>
           </ul>
         </div>
       ) : (
-        ''
+        ""
       )}
     </div>
-  )
-}
+  );
+};
 
-export default SelectClientField
+export default SelectClientField;

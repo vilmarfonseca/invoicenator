@@ -1,50 +1,50 @@
-'use client'
-import { AuthContext } from '@/context/authContext'
-import Link from 'next/link'
-import { useContext, useEffect, useState } from 'react'
-import Logo from './Logo'
+"use client";
+import { AuthContext } from "@/context/authContext";
+import Link from "next/link";
+import { useContext, useEffect, useState } from "react";
+import Logo from "./Logo";
 
 type DrapdownStateType = {
-  isActive: boolean
-  idx: number | null
-}
+  isActive: boolean;
+  idx: number | null;
+};
 
 type NavigationItem = {
-  title: string
-  path: string
-  icon?: JSX.Element
-  desc?: string
-  label?: string
-  navs?: NavigationItem[]
-}
+  title: string;
+  path: string;
+  icon?: JSX.Element;
+  desc?: string;
+  label?: string;
+  navs?: NavigationItem[];
+};
 
 const Header = () => {
-  const { currentUser }: any = useContext(AuthContext)
-  const [state, setState] = useState(false)
+  const { currentUser }: any = useContext(AuthContext);
+  const [state, setState] = useState(false);
   const [drapdownState, setDrapdownState] = useState<DrapdownStateType>({
     isActive: false,
     idx: null,
-  })
+  });
 
   const navigation: NavigationItem[] = [
-    { title: 'Customers', path: '#' },
-    { title: 'Features', path: '#' },
-    { title: 'Pricing', path: '#' },
-  ]
+    { title: "Customers", path: "#" },
+    { title: "Features", path: "#" },
+    { title: "Pricing", path: "#" },
+  ];
 
   useEffect(() => {
     document.onclick = (e) => {
-      const target = e.target as Element
-      if (!target?.closest('.nav-menu'))
-        setDrapdownState({ isActive: false, idx: null })
-    }
-  }, [])
+      const target = e.target as Element;
+      if (!target?.closest(".nav-menu"))
+        setDrapdownState({ isActive: false, idx: null });
+    };
+  }, []);
 
   return (
     <>
       <nav
         className={`relative z-20 bg-white w-full md:static md:text-sm md:border-none ${
-          state ? 'shadow-lg rounded-b-xl md:shadow-none' : ''
+          state ? "shadow-lg rounded-b-xl md:shadow-none" : ""
         }`}
       >
         <div className="items-center gap-x-8 px-4 max-w-screen-xl mx-auto md:flex md:px-8">
@@ -89,7 +89,7 @@ const Header = () => {
           </div>
           <div
             className={`nav-menu flex-1 pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-              state ? 'block' : 'hidden'
+              state ? "block" : "hidden"
             }`}
           >
             <ul className="items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
@@ -141,10 +141,10 @@ const Header = () => {
                         </ul>
                       </div>
                     ) : (
-                      ''
+                      ""
                     )}
                   </li>
-                )
+                );
               })}
               <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
                 {!currentUser && (
@@ -159,10 +159,10 @@ const Header = () => {
                 )}
                 <li>
                   <Link
-                    href={currentUser ? '/dashboard' : '/auth/signup'}
+                    href={currentUser ? "/dashboard" : "/auth/signup"}
                     className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
                   >
-                    {currentUser ? 'Dashboard' : 'Get Started'}
+                    {currentUser ? "Dashboard" : "Get Started"}
                   </Link>
                 </li>
               </div>
@@ -176,10 +176,10 @@ const Header = () => {
           onClick={() => setState(false)}
         ></div>
       ) : (
-        ''
+        ""
       )}
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

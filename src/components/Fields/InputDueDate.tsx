@@ -1,12 +1,14 @@
-import { useGlobalState } from '@/context/globalStateContext'
-import React, { useEffect, useRef, useState } from 'react'
+import { useGlobalState } from "@/context/globalStateContext";
+import React, { useEffect, useRef, useState } from "react";
 
 const DateInputField = () => {
-  const today = new Date().toISOString().split('T')[0]
-  const { currentInvoice, setCurrentInvoice } = useGlobalState()
-  const [selectedDate, setSelectedDate] = useState(currentInvoice?.dueDate ?? today)
-  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
-  const dateInputRef = useRef<HTMLInputElement>(null)
+  const today = new Date().toISOString().split("T")[0];
+  const { currentInvoice, setCurrentInvoice } = useGlobalState();
+  const [selectedDate, setSelectedDate] = useState(
+    currentInvoice?.dueDate ?? today,
+  );
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const dateInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleDatePickerClick = (e: MouseEvent) => {
@@ -14,34 +16,34 @@ const DateInputField = () => {
         dateInputRef.current &&
         !dateInputRef.current.contains(e.target as Node)
       ) {
-        setIsDatePickerOpen(false)
+        setIsDatePickerOpen(false);
       }
-    }
+    };
 
-    document.addEventListener('click', handleDatePickerClick)
+    document.addEventListener("click", handleDatePickerClick);
 
     return () => {
-      document.removeEventListener('click', handleDatePickerClick)
-    }
-  }, [])
+      document.removeEventListener("click", handleDatePickerClick);
+    };
+  }, []);
 
   useEffect(() => {
     if (selectedDate) {
       setCurrentInvoice({
         ...currentInvoice,
         ...{ dueDate: selectedDate },
-      })
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedDate])
+  }, [selectedDate]);
 
   const toggleDatePicker = () => {
-    setIsDatePickerOpen(!isDatePickerOpen)
-  }
+    setIsDatePickerOpen(!isDatePickerOpen);
+  };
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedDate(e.target.value)
-  }
+    setSelectedDate(e.target.value);
+  };
 
   return (
     <div className="relative max-w-xs min-w-[200px] text-base">
@@ -59,7 +61,7 @@ const DateInputField = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DateInputField
+export default DateInputField;

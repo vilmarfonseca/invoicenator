@@ -1,12 +1,12 @@
-'use client'
-import InvoiceList from '@/components/InvoiceList'
-import LoadingSpinner from '@/components/LoadingSpinner'
-import NoInvoices from '@/components/NoInvoices'
-import OverviewCards from '@/components/OverviewCards'
-import { useGlobalState } from '@/context/globalStateContext'
+"use client";
+import InvoiceList from "@/components/InvoiceList";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import NoInvoices from "@/components/NoInvoices";
+import OverviewCards from "@/components/OverviewCards";
+import { useGlobalState } from "@/context/globalStateContext";
 
 export default function Dashboard() {
-  const { invoices, loading } = useGlobalState()
+  const { invoices, loading } = useGlobalState();
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8">
@@ -28,5 +28,5 @@ export default function Dashboard() {
         </>
       )}
     </div>
-  )
+  );
 }

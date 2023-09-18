@@ -1,22 +1,22 @@
-'use client'
-import Sidebar from '@/components/Sidebar'
-import { useAuth } from '@/context/authContext'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+"use client";
+import Sidebar from "@/components/Sidebar";
+import { useAuth } from "@/context/authContext";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const router = useRouter()
-  const { authUser, loading } = useAuth()
+  const router = useRouter();
+  const { authUser, loading } = useAuth();
 
   useEffect(() => {
     if (!loading && !authUser) {
-      router.push('/auth/login')
+      router.push("/auth/login");
     }
-  }, [authUser, loading, router])
+  }, [authUser, loading, router]);
 
   if (!loading && authUser) {
     return (
@@ -26,6 +26,6 @@ export default function DashboardLayout({
           {children}
         </main>
       </>
-    )
+    );
   }
 }

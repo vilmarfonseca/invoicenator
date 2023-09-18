@@ -17,9 +17,8 @@ const Features = () => {
           />
         </svg>
       ),
-      title: 'Fast Interface',
-      desc:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.',
+      title: "Fast Interface",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
     },
     {
       icon: (
@@ -38,9 +37,8 @@ const Features = () => {
           />
         </svg>
       ),
-      title: 'Analytics',
-      desc:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.',
+      title: "Analytics",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
     },
     {
       icon: (
@@ -59,9 +57,8 @@ const Features = () => {
           />
         </svg>
       ),
-      title: 'Datacenter security',
-      desc:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.',
+      title: "Datacenter security",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
     },
     {
       icon: (
@@ -80,9 +77,8 @@ const Features = () => {
           />
         </svg>
       ),
-      title: 'Build on your terms',
-      desc:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.',
+      title: "Build on your terms",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
     },
     {
       icon: (
@@ -101,9 +97,8 @@ const Features = () => {
           />
         </svg>
       ),
-      title: 'Safe to use',
-      desc:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.',
+      title: "Safe to use",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
     },
     {
       icon: (
@@ -122,11 +117,10 @@ const Features = () => {
           />
         </svg>
       ),
-      title: 'Flexible',
-      desc:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.',
+      title: "Flexible",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius, enim ex faucibus purus.",
     },
-  ]
+  ];
 
   return (
     <section className="py-24">
@@ -160,7 +154,7 @@ const Features = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Features
+export default Features;

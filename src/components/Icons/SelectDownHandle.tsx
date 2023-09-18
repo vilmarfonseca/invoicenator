@@ -12,5 +12,5 @@ export default function SelectDownHandleIcon() {
         clipRule="evenodd"
       />
     </svg>
-  )
+  );
 }

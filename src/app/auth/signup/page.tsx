@@ -1,18 +1,18 @@
-'use client'
+"use client";
 
-import SignUpForm from '@/components/Forms/SignupForm'
-import Logo from '@/components/Logo'
-import { AuthContext } from '@/context/authContext'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useContext } from 'react'
+import SignUpForm from "@/components/Forms/SignupForm";
+import Logo from "@/components/Logo";
+import { AuthContext } from "@/context/authContext";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useContext } from "react";
 
 const SignUp = () => {
-  const router = useRouter()
-  const { currentUser }: any = useContext(AuthContext)
+  const router = useRouter();
+  const { currentUser }: any = useContext(AuthContext);
 
   if (currentUser) {
-    router.push('/dashboard')
+    router.push("/dashboard");
   }
 
   return (
@@ -35,7 +35,7 @@ const SignUp = () => {
         </div>
         <div className="text-center">
           <p className="">
-            Already have an account?{' '}
+            Already have an account?{" "}
             <Link
               href="/auth/login"
               className="font-medium text-indigo-600 hover:text-indigo-500"
@@ -46,7 +46,7 @@ const SignUp = () => {
         </div>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

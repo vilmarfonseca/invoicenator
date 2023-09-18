@@ -1,26 +1,26 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import Logo from './Logo'
+import Image from "next/image";
+import Link from "next/link";
+import Logo from "./Logo";
 
 const Footer = () => {
   const footerNavs = [
     {
-      href: '#',
-      name: 'Terms',
+      href: "#",
+      name: "Terms",
     },
     {
-      href: '#',
-      name: 'License',
+      href: "#",
+      name: "License",
     },
     {
-      href: '#',
-      name: 'Privacy',
+      href: "#",
+      name: "Privacy",
     },
     {
-      href: '#',
-      name: 'About us',
+      href: "#",
+      name: "About us",
     },
-  ]
+  ];
   return (
     <footer className="pt-10">
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
@@ -69,7 +69,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

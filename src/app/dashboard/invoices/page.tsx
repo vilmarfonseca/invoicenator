@@ -1,19 +1,19 @@
-'use client'
-import InvoiceList from '@/components/InvoiceList'
-import LoadingSpinner from '@/components/LoadingSpinner'
-import NoInvoices from '@/components/NoInvoices'
-import { useGlobalState } from '@/context/globalStateContext'
-import Link from 'next/link'
+"use client";
+import InvoiceList from "@/components/InvoiceList";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import NoInvoices from "@/components/NoInvoices";
+import { useGlobalState } from "@/context/globalStateContext";
+import Link from "next/link";
 
 export default function Invoices() {
-  const { invoices, loading } = useGlobalState()
+  const { invoices, loading } = useGlobalState();
 
   if (loading) {
     return (
       <div>
         <LoadingSpinner />
       </div>
-    )
+    );
   }
   return (
     <>
@@ -43,5 +43,5 @@ export default function Invoices() {
         <NoInvoices />
       )}
     </>
-  )
+  );
 }

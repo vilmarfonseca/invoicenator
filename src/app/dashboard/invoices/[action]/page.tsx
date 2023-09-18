@@ -1,46 +1,46 @@
-'use client'
+"use client";
 
-import InvoiceItems from '@/components/FieldGroups/InvoiceItems'
-import InputDueDate from '@/components/Fields/InputDueDate'
-import SelectClient from '@/components/Fields/SelectClient'
-import SelectStatus from '@/components/Fields/SelectStatus'
-import LoadingSpinner from '@/components/LoadingSpinner'
-import { useGlobalState } from '@/context/globalStateContext'
-import { notFound, useRouter } from 'next/navigation'
-import { useState } from 'react'
+import InvoiceItems from "@/components/FieldGroups/InvoiceItems";
+import InputDueDate from "@/components/Fields/InputDueDate";
+import SelectClient from "@/components/Fields/SelectClient";
+import SelectStatus from "@/components/Fields/SelectStatus";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import { useGlobalState } from "@/context/globalStateContext";
+import { notFound, useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface InvoiceActionsPageProps {
   params: {
-    action: string
-  }
+    action: string;
+  };
 }
 
-const allowedActions = ['create', 'edit']
+const allowedActions = ["create", "edit"];
 
 export default function InvoiceActionsPage({
   params,
 }: InvoiceActionsPageProps) {
-  const action = params.action
-  const router = useRouter()
-  const { currentInvoice, saveInvoice, setCurrentInvoice } = useGlobalState()
-  const [loading, setLoading] = useState<boolean>(false)
+  const action = params.action;
+  const router = useRouter();
+  const { currentInvoice, saveInvoice, setCurrentInvoice } = useGlobalState();
+  const [loading, setLoading] = useState<boolean>(false);
 
   async function handleSaveInvoice() {
-    setLoading(true)
-    const res = await saveInvoice(currentInvoice)
+    setLoading(true);
+    const res = await saveInvoice(currentInvoice);
 
     if (res) {
-      setLoading(false)
-      router.push('/dashboard/invoices')
-      setCurrentInvoice({})
+      setLoading(false);
+      router.push("/dashboard/invoices");
+      setCurrentInvoice({});
     }
   }
 
   if (
     !allowedActions.includes(params.action) ||
-    (action === 'edit' && !currentInvoice)
+    (action === "edit" && !currentInvoice)
   ) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -48,7 +48,7 @@ export default function InvoiceActionsPage({
       <div className="items-start justify-between border-b md:flex">
         <div>
           <h3 className="text-gray-800 text-2xl font-bold py-4 capitalize">
-            {action} Invoice {action === 'edit' ? `#${currentInvoice.id}` : ''}
+            {action} Invoice {action === "edit" ? `#${currentInvoice.id}` : ""}
           </h3>
         </div>
       </div>
@@ -95,5 +95,5 @@ export default function InvoiceActionsPage({
         </div>
       </div>
     </div>
-  )
+  );
 }

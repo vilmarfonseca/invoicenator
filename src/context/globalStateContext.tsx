@@ -4,7 +4,7 @@ import { createContext, useContext } from 'react'
 
 type GlobalContextType = {
   loading: boolean
-  currentInvoice: object
+  currentInvoice: InvoiceType
   setCurrentInvoice: Function
   saveInvoice: Function
   invoices: Array<InvoiceType>
@@ -12,7 +12,17 @@ type GlobalContextType = {
 
 export const GlobalContext = createContext<GlobalContextType>({
   loading: true,
-  currentInvoice: {},
+  currentInvoice: {
+    client: {
+      name: '',
+      id: 0,
+    },
+    status: '',
+    dueDate: '',
+    items: [],
+    total: '',
+    id: 0,
+  },
   setCurrentInvoice: () => {},
   saveInvoice: () => {},
   invoices: [],

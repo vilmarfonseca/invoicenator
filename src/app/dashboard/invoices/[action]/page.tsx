@@ -6,10 +6,9 @@ import SelectClient from '@/components/Fields/SelectClient'
 import SelectStatus from '@/components/Fields/SelectStatus'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import { useGlobalState } from '@/context/globalStateContext'
-import { initialValues } from '@/lib/hooks/useFirebaseDatabase'
 import { motion } from 'framer-motion'
 import { notFound, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 interface InvoiceActionsPageProps {
   params: {

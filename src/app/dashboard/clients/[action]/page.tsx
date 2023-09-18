@@ -2,7 +2,7 @@
 
 import LoadingSpinner from '@/components/LoadingSpinner'
 import { useGlobalState } from '@/context/globalStateContext'
-import { initialValues } from '@/lib/hooks/useFirebaseDatabase'
+import { initialValues } from '@/context/globalStateContext'
 import { motion } from 'framer-motion'
 import { notFound, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'

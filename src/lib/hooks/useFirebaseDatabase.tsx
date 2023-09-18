@@ -1,24 +1,12 @@
 import { ClientType, InvoiceType } from '@/common/types'
 import { useAuth } from '@/context/authContext'
+import { initialValues } from '@/context/globalStateContext'
 import { getCollection } from '@/lib/databse'
 import { deleteInvoiceFromFB, saveInvoiceToFB } from '@/lib/databse/invoices'
 import { getTotalPrice } from '@/utils/helpers'
 import { useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 import { deleteClientFromFB, saveClientToFB } from '../databse/clients'
-
-export const initialValues = {
-  currentInvoice: {
-    total: '0.00',
-    items: [],
-  },
-  currentClient: {
-    name: '',
-    id: 0,
-  },
-  userInvoices: [],
-  userClients: [],
-}
 
 const useFirebaseDatabase = () => {
   const { authUser } = useAuth()

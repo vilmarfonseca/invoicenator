@@ -18,7 +18,7 @@ type GlobalContextType = {
   setCurrentClient: Function
 }
 
-export const GlobalContext = createContext<GlobalContextType>({
+export const initialValues = {
   loading: true,
   action: "",
   currentClient: {
@@ -44,7 +44,11 @@ export const GlobalContext = createContext<GlobalContextType>({
   saveClient: () => {},
   deleteClient: () => {},
   setCurrentClient: () => {},
-})
+  userInvoices: [],
+  userClients: [],
+}
+
+export const GlobalContext = createContext<GlobalContextType>(initialValues)
 
 export function GlobalStateProvider({
   children,

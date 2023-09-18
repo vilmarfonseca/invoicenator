@@ -1,70 +1,79 @@
-import { useAuth } from "@/context/authContext";
-import { getCollection, saveInvoiceToFB } from "@/lib/database";
-import { getTotalPrice } from "@/utils/helpers";
-import { useEffect, useState } from "react";
-import { useLocalStorage } from "usehooks-ts";
-
-const setUserDataState = async (authUser: any, setUserData: any) => {
-  if (authUser?.uid) {
-    try {
-      const data = await getCollection(authUser, "userData");
-      if (data) {
-        setUserData(data as any);
-      }
-    } catch (error) {
-      console.error("Error while fetching user data:", error);
-    }
-  }
-};
-
-const setUserInvoices = async (
-  authUser: any,
-  setInvoicesData: any,
-  setLoading: any,
-) => {
-  if (authUser?.uid) {
-    setLoading(true);
-    try {
-      const data = await getCollection(authUser, "invoices");
-      if (data?.invoices) {
-        setInvoicesData(data?.invoices);
-      }
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching user invoices:", error);
-    }
-  }
-};
+import { useEffect, useState } from 'react'
+import { useLocalStorage } from 'usehooks-ts'
+import { useAuth } from '@/context/authContext'
+import { getCollection, saveInvoiceToFB } from '@/lib/database'
+import { getTotalPrice } from '@/utils/helpers'
 
 const initialValues = {
   currentInvoice: {
-    total: "0.00",
+    total: '0.00',
     items: [],
   },
   userInvoices: [],
   userData: null,
-};
+}
 
-export default function useFirebaseDatabase() {
-  const { authUser } = useAuth();
-  const [loading, setLoading] = useState(false);
+const setUserDataState = async (
+  authUser: AuthUserType,
+  setUserData: Function,
+) => {
+  if (authUser?.uid) {
+    try {
+      const data = await getCollection(authUser, 'userData')
+      if (data) {
+        setUserData(data as AuthUserType)
+      }
+    } catch (error) {
+      throw new Error('Error while fetching user data: ' + error)
+    }
+  }
+}
+
+const setUserInvoices = async (
+  authUser: AuthUserType,
+  setInvoicesData: Function,
+  setLoading: Function,
+) => {
+  if (authUser?.uid) {
+    setLoading(true)
+    try {
+      const data = await getCollection(authUser, 'invoices')
+      if (data?.invoices) {
+        setInvoicesData(data?.invoices)
+      }
+      setLoading(false)
+    } catch (error) {
+      throw new Error('Error fetching user invoices: ' + error)
+    }
+  }
+}
+
+const useFirebaseDatabase = () => {
+  const { authUser } = useAuth()
+  const [loading, setLoading] = useState(false)
   const [currentInvoice, setCurrentInvoice] = useLocalStorage(
-    "invoice",
+    'invoice',
     initialValues.currentInvoice,
-  );
-  const [invoices, setInvoices] = useState(initialValues.userInvoices);
+  )
+  const [invoices, setInvoices] = useState(initialValues.userInvoices)
   const [userData, setUserData] = useLocalStorage(
-    "userData",
+    'userData',
     initialValues.userData,
-  );
+  )
 
   useEffect(() => {
-    setUserDataState(authUser, setUserData);
-  }, [authUser, setUserData]);
+    setUserDataState(authUser as AuthUserType, setUserData).catch((error) => {
+      console.error(error)
+    })
+  }, [authUser, setUserData])
 
   useEffect(() => {
-    setUserInvoices(authUser, setInvoices, setLoading);
-  }, [authUser, setInvoices, currentInvoice]);
+    setUserInvoices(authUser as AuthUserType, setInvoices, setLoading).catch(
+      (error) => {
+        console.error(error)
+      },
+    )
+  }, [authUser, setInvoices])
 
   useEffect(() => {
     if (
@@ -72,31 +81,31 @@ export default function useFirebaseDatabase() {
       !currentInvoice.items ||
       currentInvoice.items.length === 0
     ) {
-      return;
+      return
     }
 
-    const newTotal = getTotalPrice(currentInvoice.items);
-    const newInvoice = { ...currentInvoice };
+    const newTotal = getTotalPrice(currentInvoice.items)
+    const newInvoice = { ...currentInvoice }
 
     if (newTotal !== currentInvoice.total) {
-      newInvoice.total = newTotal;
-      setCurrentInvoice(newInvoice);
+      newInvoice.total = newTotal
+      setCurrentInvoice(newInvoice)
     }
-  }, [currentInvoice, setCurrentInvoice]);
+  }, [currentInvoice, setCurrentInvoice])
 
-  const saveInvoice = async (invoice: any) => {
+  const saveInvoice = async (invoice: InvoiceType) => {
     if (authUser?.uid) {
       try {
-        const data = await saveInvoiceToFB(authUser, invoice);
+        const data = await saveInvoiceToFB(authUser, invoice)
         if (data) {
-          setCurrentInvoice(initialValues.currentInvoice);
-          return true;
+          setCurrentInvoice(initialValues.currentInvoice)
+          return true
         }
       } catch (error) {
-        console.error("Error while saving invoice:", error);
+        throw new Error('Error while saving invoice: ' + error)
       }
     }
-  };
+  }
 
   return {
     userData,
@@ -105,5 +114,7 @@ export default function useFirebaseDatabase() {
     setCurrentInvoice,
     saveInvoice,
     loading,
-  };
+  }
 }
+
+export default useFirebaseDatabase

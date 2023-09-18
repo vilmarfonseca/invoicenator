@@ -1,80 +1,83 @@
-import InvoiceList from "@/components/InvoiceList";
-import { database } from "@/services/firebase";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import InvoiceList from '@/components/InvoiceList'
+import { database } from '@/services/firebase'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 
-export const initializeNewUser = async (currentUser: any) => {
+export const initializeNewUser = async (currentUser: AuthUserType) => {
   try {
     if (!currentUser || !currentUser.uid) {
-      throw new Error("Invalid user object or missing UID.");
+      throw new Error('Invalid user object or missing UID.')
     }
 
     // Initialize User Data
-    const usersRef = doc(database, "userData", currentUser.uid);
-    await setDoc(usersRef, { name: "" });
+    const usersRef = doc(database, 'userData', currentUser.uid)
+    await setDoc(usersRef, { name: '' })
 
     // Initializ User Invoices
-    const invoicesRef = doc(database, "invoices", currentUser.uid);
-    await setDoc(invoicesRef, { invoices: [] });
+    const invoicesRef = doc(database, 'invoices', currentUser.uid)
+    await setDoc(invoicesRef, { invoices: [] })
   } catch (error) {
-    console.error("Error while initializing new user:", error);
-    throw error;
+    console.error('Error while initializing new user:', error)
+    throw error
   }
-};
+}
 
 export const getCollection = async (
-  currentUser: any,
+  currentUser: AuthUserType,
   collectionName: string,
 ) => {
   try {
     if (!currentUser || !currentUser.uid) {
-      throw new Error("Invalid user object or missing UID.");
+      throw new Error('Invalid user object or missing UID.')
     }
 
-    const docRef = doc(database, collectionName, currentUser.uid);
-    const docSnap = await getDoc(docRef);
+    const docRef = doc(database, collectionName, currentUser.uid)
+    const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
-      return docSnap.data();
+      return docSnap.data()
     } else {
-      console.log("No such document!");
-      return null;
+      console.log('No such document!')
+      return null
     }
   } catch (error) {
-    console.error("Error while getting user data:", error);
-    throw error;
+    console.error('Error while getting user data:', error)
+    throw error
   }
-};
+}
 
-export const saveInvoiceToFB = async (user: any, newInvoice: any) => {
+export const saveInvoiceToFB = async (
+  user: AuthUserType,
+  newInvoice: InvoiceType,
+) => {
   try {
     if (!user || !user.uid) {
-      throw new Error("Invalid user object or missing UID.");
+      throw new Error('Invalid user object or missing UID.')
     }
 
-    const oldInvoicesList = await getCollection(user, "invoices");
-    const newList = [...oldInvoicesList?.invoices];
+    const oldInvoicesList = await getCollection(user, 'invoices')
+    const newList = [...oldInvoicesList?.invoices]
 
     const existingInvoiceIdx = newList.findIndex(
       (item) => item.id === newInvoice.id,
-    );
+    )
 
     if (newInvoice.id && existingInvoiceIdx > -1) {
-      newList[existingInvoiceIdx] = newInvoice;
+      newList[existingInvoiceIdx] = newInvoice
     } else {
       newInvoice.id =
         newList.reduce(
           (maxId, item) => (item.id > maxId ? item.id : maxId),
           0,
-        ) + 1;
-      newList.push(newInvoice);
+        ) + 1
+      newList.push(newInvoice)
     }
 
-    const usersRef = doc(database, "invoices", user.uid);
-    await setDoc(usersRef, { invoices: newList });
+    const usersRef = doc(database, 'invoices', user.uid)
+    await setDoc(usersRef, { invoices: newList })
 
-    return true;
+    return true
   } catch (error) {
-    console.error("Error while saving invoice to Firebase", error);
-    throw error;
+    console.error('Error while saving invoice to Firebase', error)
+    throw error
   }
-};
+}

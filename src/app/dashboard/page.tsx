@@ -1,7 +1,7 @@
 'use client'
 import InvoiceList from '@/components/InvoiceList'
 import LoadingSpinner from '@/components/LoadingSpinner'
-import NoInvoices from '@/components/NoInvoices'
+import NoContent from '@/components/NoContent'
 import OverviewCards from '@/components/OverviewCards'
 import { useGlobalState } from '@/context/globalStateContext'
 import { motion } from 'framer-motion'
@@ -21,7 +21,7 @@ export default function Dashboard() {
           <LoadingSpinner />
         </div>
       ) : !loading && invoices?.length === 0 ? (
-        <NoInvoices />
+        <NoContent contentType='invoice' />
       ) : (
         <motion.div
           initial={{ opacity: 0 }}

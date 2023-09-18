@@ -22,7 +22,7 @@ const Sidebar = () => {
       icon: <InvoicesIcon />,
     },
     {
-      href: "/clients",
+      href: "/dashboard/clients",
       name: "Clients",
       icon: <UsersIcon />,
     },

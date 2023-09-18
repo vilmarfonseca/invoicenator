@@ -2,8 +2,13 @@ import CheckIcon from '@/components/Icons/ChcekIcon'
 import SelectDownHandleIcon from '@/components/Icons/SelectDownHandle'
 import { useGlobalState } from '@/context/globalStateContext'
 import { useEffect, useRef, useState } from 'react'
+import React from 'react'
 
-const StatusSelectField = () => {
+interface StatusSelectFieldProps {
+  action: string
+}
+
+const StatusSelectField: React.FC<StatusSelectFieldProps> = ({ action }) => {
   const { currentInvoice, setCurrentInvoice } = useGlobalState()
   const menuItems = [
     ['Undefined', 'bg-gray-600', 'text-gray-600'],
@@ -13,11 +18,13 @@ const StatusSelectField = () => {
 
   const [selectedItem, setSelectedItem] = useState({
     item:
-      menuItems.find(
-        (item) =>
-          item[0].toLocaleLowerCase() ===
-          currentInvoice?.status?.toLocaleLowerCase(),
-      ) ?? menuItems[0],
+      action === 'edit'
+        ? menuItems.find(
+            (item) =>
+              item[0].toLocaleLowerCase() ===
+              currentInvoice?.status?.toLocaleLowerCase(),
+          ) ?? ''
+        : menuItems[0],
     idx: 0,
   })
   const [state, setState] = useState(false)
@@ -59,7 +66,7 @@ const StatusSelectField = () => {
       >
         <div className="flex items-center gap-x-3">
           <span
-            className={`w-2 h-2 rounded-full ${selectedItem.item[1]}`}
+            className={`w-2 h-2 rounded-full ${selectedItem.item[1] ?? ''}`}
           ></span>
           <span className={`text-sm ${selectedItem.item[2]}`}>
             {selectedItem.item[0]}

@@ -8,6 +8,7 @@ export type AuthUserType = {
 export type ClientType = {
   name: string
   id: number
+  [key: string]: any;
 }
 
 // Invoice

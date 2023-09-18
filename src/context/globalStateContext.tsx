@@ -1,47 +1,62 @@
-"use client";
-import { InvoiceType } from "@/common/types";
-import useFirebaseDatabase from "@/lib/hooks/useFirebaseDatabase";
-import { createContext, useContext } from "react";
+'use client'
+import { ClientType, InvoiceType } from '@/common/types'
+import useFirebaseDatabase from '@/lib/hooks/useFirebaseDatabase'
+import { createContext, useContext } from 'react'
 
 type GlobalContextType = {
-  loading: boolean;
-  currentInvoice: InvoiceType;
-  setCurrentInvoice: Function;
-  saveInvoice: Function;
-  deleteInvoice: Function;
-  invoices: Array<InvoiceType>;
-};
+  loading: boolean
+  action: string
+  currentInvoice: InvoiceType
+  currentClient: ClientType
+  invoices: Array<InvoiceType>
+  saveInvoice: Function
+  deleteInvoice: Function
+  setCurrentInvoice: Function
+  clients: Array<ClientType>
+  saveClient: Function
+  deleteClient: Function
+  setCurrentClient: Function
+}
 
 export const GlobalContext = createContext<GlobalContextType>({
   loading: true,
-  currentInvoice: {
-    client: {
-      name: "",
-      id: 0,
-    },
-    status: "",
-    dueDate: "",
-    items: [],
-    total: "",
+  action: "",
+  currentClient: {
+    name: '',
     id: 0,
   },
-  setCurrentInvoice: () => {},
+  currentInvoice: {
+    client: {
+      name: '',
+      id: 0,
+    },
+    status: '',
+    dueDate: '',
+    items: [],
+    total: '',
+    id: 0,
+  },
+  invoices: [],
   saveInvoice: () => {},
   deleteInvoice: () => {},
-  invoices: [],
-});
+  setCurrentInvoice: () => {},
+  clients: [],
+  saveClient: () => {},
+  deleteClient: () => {},
+  setCurrentClient: () => {},
+})
 
 export function GlobalStateProvider({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  const state = useFirebaseDatabase();
+  const state = useFirebaseDatabase()
   return (
     <GlobalContext.Provider value={state as any}>
       {children}
     </GlobalContext.Provider>
-  );
+  )
 }
 
-export const useGlobalState = () => useContext(GlobalContext);
+export const useGlobalState = () => useContext(GlobalContext)

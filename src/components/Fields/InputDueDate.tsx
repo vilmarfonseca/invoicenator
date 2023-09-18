@@ -1,11 +1,15 @@
 import { useGlobalState } from "@/context/globalStateContext";
 import React, { useEffect, useRef, useState } from "react";
 
-const DateInputField = () => {
+interface DateInputFieldProps {
+  action:string
+}
+
+const DateInputField:React.FC<DateInputFieldProps> = ({action}) => {
   const today = new Date().toISOString().split("T")[0];
   const { currentInvoice, setCurrentInvoice } = useGlobalState();
   const [selectedDate, setSelectedDate] = useState(
-    currentInvoice?.dueDate ?? today,
+    action === "edit" ? currentInvoice?.dueDate : today,
   );
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const dateInputRef = useRef<HTMLInputElement>(null);

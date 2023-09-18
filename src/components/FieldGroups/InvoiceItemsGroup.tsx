@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { useGlobalState } from '@/context/globalStateContext'
 import DeleteIcon from '@/components/Icons/DeleteIcon'
 
-const InvoiceItemsGroup = () => {
+interface InvoiceItemsGroupProps {
+  action: string
+}
+
+const InvoiceItemsGroup:React.FC<InvoiceItemsGroupProps> = ({action}) => {
   const { currentInvoice, setCurrentInvoice } = useGlobalState()
   const [items, setItems] = useState<{ [key: string]: string }[]>(
-    currentInvoice?.items ?? [
-      { name: '', description: '', quantity: '', price: '' },
-    ],
+    action === "edit" 
+      ? currentInvoice?.items
+      : [{ name: '', description: '', quantity: '', price: '' }],
   )
 
   const handleAddItem = () => {

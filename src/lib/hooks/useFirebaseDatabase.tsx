@@ -1,37 +1,23 @@
+import { ClientType, InvoiceType } from '@/common/types'
+import { useAuth } from '@/context/authContext'
+import { getCollection } from '@/lib/databse'
+import { deleteInvoiceFromFB, saveInvoiceToFB } from '@/lib/databse/invoices'
+import { getTotalPrice } from '@/utils/helpers'
 import { useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
-import { useAuth } from '@/context/authContext'
-import {
-  deleteInvoiceFromFB,
-  getCollection,
-  saveInvoiceToFB,
-} from '@/lib/database'
-import { getTotalPrice } from '@/utils/helpers'
-import { AuthUserType, InvoiceType } from '@/common/types'
+import { deleteClientFromFB, saveClientToFB } from '../databse/clients'
 
-const initialValues = {
+export const initialValues = {
   currentInvoice: {
     total: '0.00',
     items: [],
   },
+  currentClient: {
+    name: '',
+    id: 0,
+  },
   userInvoices: [],
-  userData: null,
-}
-
-const setUserDataState = async (
-  authUser: AuthUserType,
-  setUserData: Function,
-) => {
-  if (authUser?.uid) {
-    try {
-      const data = await getCollection(authUser, 'userData')
-      if (data) {
-        setUserData(data as AuthUserType)
-      }
-    } catch (error) {
-      throw new Error('Error while fetching user data: ' + error)
-    }
-  }
+  userClients: [],
 }
 
 const useFirebaseDatabase = () => {
@@ -41,11 +27,12 @@ const useFirebaseDatabase = () => {
     'invoice',
     initialValues.currentInvoice,
   )
-  const [invoices, setInvoices] = useState(initialValues.userInvoices)
-  const [userData, setUserData] = useLocalStorage(
-    'userData',
-    initialValues.userData,
+  const [currentClient, setCurrentClient] = useLocalStorage(
+    'client',
+    initialValues.currentClient,
   )
+  const [invoices, setInvoices] = useState(initialValues.userInvoices)
+  const [clients, setClients] = useState(initialValues.userClients)
 
   const updatedUserInvoices = async () => {
     if (authUser?.uid) {
@@ -61,36 +48,6 @@ const useFirebaseDatabase = () => {
       }
     }
   }
-
-  useEffect(() => {
-    setUserDataState(authUser as AuthUserType, setUserData).catch((error) => {
-      console.error(error)
-    })
-  }, [authUser, setUserData])
-
-  useEffect(() => {
-    updatedUserInvoices()
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authUser, setInvoices])
-
-  useEffect(() => {
-    if (
-      !currentInvoice ||
-      !currentInvoice.items ||
-      currentInvoice.items.length === 0
-    ) {
-      return
-    }
-
-    const newTotal = getTotalPrice(currentInvoice.items)
-    const newInvoice = { ...currentInvoice }
-
-    if (newTotal !== currentInvoice.total) {
-      newInvoice.total = newTotal
-      setCurrentInvoice(newInvoice)
-    }
-  }, [currentInvoice, setCurrentInvoice])
 
   const saveInvoice = async (invoice: InvoiceType) => {
     setLoading(true)
@@ -126,14 +83,91 @@ const useFirebaseDatabase = () => {
     }
   }
 
+  const updatedUserClients = async () => {
+    if (authUser?.uid) {
+      setLoading(true)
+      try {
+        const data = await getCollection(authUser, 'clients')
+        if (data?.clients) {
+          setClients(data?.clients)
+        }
+        setLoading(false)
+      } catch (error) {
+        throw new Error('Error fetching user clients: ' + error)
+      }
+    }
+  }
+
+  const saveClient = async (client: ClientType) => {
+    setLoading(true)
+    if (authUser?.uid) {
+      try {
+        const data = await saveClientToFB(authUser, client)
+        if (data) {
+          setLoading(false)
+          setCurrentClient(initialValues.currentClient)
+          updatedUserClients()
+          return true
+        }
+      } catch (error) {
+        throw new Error('Error while saving client: ' + error)
+      }
+    }
+  }
+
+  const deleteClient = async (client: ClientType) => {
+    setLoading(true)
+    if (authUser?.uid) {
+      try {
+        const data = await deleteClientFromFB(authUser, client)
+        if (data) {
+          setLoading(false)
+          setCurrentClient(initialValues.currentClient)
+          updatedUserClients()
+          return true
+        }
+      } catch (error) {
+        throw new Error('Error while saving client: ' + error)
+      }
+    }
+  }
+
+  useEffect(() => {
+    updatedUserInvoices()
+    updatedUserClients()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authUser])
+
+  useEffect(() => {
+    if (
+      !currentInvoice ||
+      !currentInvoice.items ||
+      currentInvoice.items.length === 0
+    ) {
+      return
+    }
+
+    const newTotal = getTotalPrice(currentInvoice.items)
+    const newInvoice = { ...currentInvoice }
+
+    if (newTotal !== currentInvoice.total) {
+      newInvoice.total = newTotal
+      setCurrentInvoice(newInvoice)
+    }
+  }, [currentInvoice, setCurrentInvoice])
+
   return {
-    currentInvoice,
-    deleteInvoice,
     invoices,
+    currentInvoice,
+    clients,
+    currentClient,
     loading,
     saveInvoice,
+    deleteInvoice,
     setCurrentInvoice,
-    userData,
+    saveClient,
+    deleteClient,
+    setCurrentClient,
   }
 }
 

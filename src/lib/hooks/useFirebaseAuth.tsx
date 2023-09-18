@@ -1,5 +1,5 @@
 import { AuthUserType } from '@/common/types'
-import { initializeNewUser } from '@/lib/database'
+import { initializeNewUser } from '@/lib/databse'
 import { auth } from '@/services/firebase'
 import {
   User,

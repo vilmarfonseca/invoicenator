@@ -10,7 +10,7 @@ const InvoiceItemsGroup:React.FC<InvoiceItemsGroupProps> = ({action}) => {
   const { currentInvoice, setCurrentInvoice } = useGlobalState()
   const [items, setItems] = useState<{ [key: string]: string }[]>(
     action === "edit" 
-      ? currentInvoice?.items
+      ? currentInvoice?.items ?? []
       : [{ name: '', description: '', quantity: '', price: '' }],
   )
 
@@ -48,7 +48,7 @@ const InvoiceItemsGroup:React.FC<InvoiceItemsGroupProps> = ({action}) => {
 
   return (
     <div className="flex flex-col ga-6 justify-between items-baseline w-full">
-      {items.map((item, index) => (
+      {items && items.map((item, index) => (
         <div key={index} className="mb-4 flex gap-8 w-full items-end">
           <div className="w-full">
             <label className="text-gray-600">Name</label>

@@ -47,7 +47,6 @@ export const getCollection = async (
 
 export const saveInvoiceToFB = async (
   user: any,
-  userData: any,
   newInvoice: any,
 ) => {
   try {
@@ -58,14 +57,21 @@ export const saveInvoiceToFB = async (
     const oldInvoicesList = await getCollection(user, 'invoices')
     const newList = [...oldInvoicesList?.invoices]
 
-    newInvoice.id = newList.length + 1
+    const existingInvoiceIdx = newList.findIndex(
+      (item) => item.id === newInvoice.id,
+    )
 
-    newList.push(newInvoice)
+    if (newInvoice.id && existingInvoiceIdx > -1) {
+      newList[existingInvoiceIdx] = newInvoice
+    } else {
+      newInvoice.id = newList.reduce((maxId, item) => (item.id > maxId ? item.id : maxId), 0) + 1
+      newList.push(newInvoice)
+    }
 
     const usersRef = doc(database, 'invoices', user.uid)
     await setDoc(usersRef, { invoices: newList })
-    return newInvoice
 
+    return true
   } catch (error) {
     console.error('Error while saving invoice to Firebase', error)
     throw error

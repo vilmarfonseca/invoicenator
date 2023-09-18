@@ -5,12 +5,23 @@ import InputDueDate from '@/components/Fields/InputDueDate'
 import SelectClient from '@/components/Fields/SelectClient'
 import SelectStatus from '@/components/Fields/SelectStatus'
 import { useGlobalState } from '@/context/globalStateContext'
-import { useRouter } from 'next/navigation'
+import { notFound, useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-export default function CreateInvoice() {
+interface InvoiceActionsPageProps {
+  params: {
+    action: string
+  }
+}
+
+const allowedActions = ['create', 'edit']
+
+export default function InvoiceActionsPage({
+  params,
+}: InvoiceActionsPageProps) {
+  const action = params.action
   const router = useRouter()
-  const { currentInvoice, saveInvoice } = useGlobalState()
+  const { currentInvoice, saveInvoice, setCurrentInvoice } = useGlobalState()
   const [loading, setLoading] = useState<boolean>(false)
 
   async function handleSaveInvoice() {
@@ -20,15 +31,23 @@ export default function CreateInvoice() {
     if (res) {
       setLoading(false)
       router.push('/dashboard/invoices')
+      setCurrentInvoice({})
     }
+  }
+
+  if (
+    !allowedActions.includes(params.action) ||
+    (action === 'edit' && !currentInvoice)
+  ) {
+    notFound()
   }
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 pb-16">
       <div className="items-start justify-between border-b md:flex">
         <div>
-          <h3 className="text-gray-800 text-2xl font-bold py-4">
-            Create Invoice
+          <h3 className="text-gray-800 text-2xl font-bold py-4 capitalize">
+            {action} Invoice {action === 'edit' ? `#${currentInvoice.id}` : ''}
           </h3>
         </div>
       </div>

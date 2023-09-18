@@ -3,7 +3,7 @@ import { useGlobalState } from '@/context/globalStateContext'
 
 const InvoiceItemsFieldGroup = () => {
   const { currentInvoice, setCurrentInvoice } = useGlobalState()
-  const [items, setItems] = useState<{ [key: string]: string }[]>([
+  const [items, setItems] = useState<{ [key: string]: string }[]>(currentInvoice?.items ?? [
     { name: '', description: '', quantity: '', price: '' },
   ])
 
@@ -27,8 +27,6 @@ const InvoiceItemsFieldGroup = () => {
     const newItems = items.filter(
       (item) => item.price && item.quantity && item.name,
     )
-
-    console.log(newItems, 'newItems')
 
     if (newItems.length > 0) {
       setCurrentInvoice({

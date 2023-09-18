@@ -3,8 +3,8 @@ import React, { useEffect, useRef, useState } from 'react'
 
 const DateInputField = () => {
   const today = new Date().toISOString().split('T')[0]
-  const [selectedDate, setSelectedDate] = useState(today)
   const { currentInvoice, setCurrentInvoice } = useGlobalState()
+  const [selectedDate, setSelectedDate] = useState(currentInvoice?.dueDate ?? today)
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
   const dateInputRef = useRef<HTMLInputElement>(null)
 

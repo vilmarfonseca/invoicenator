@@ -1,5 +1,6 @@
 import { useGlobalState } from '@/context/globalStateContext'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 interface InvoiceListProps {
@@ -7,7 +8,13 @@ interface InvoiceListProps {
 }
 
 const InvoiceList: React.FC<InvoiceListProps> = ({ heading = true }) => {
-  const { invoices } = useGlobalState()
+  const router = useRouter()
+  const { invoices, setCurrentInvoice } = useGlobalState()
+
+  async function handleinvoiceClick(invoice: any) {
+    setCurrentInvoice(invoice)
+    router.push('/dashboard/invoices/edit')
+  }
 
   return (
     <div className="max-w-screen-xl mx-auto">
@@ -40,31 +47,33 @@ const InvoiceList: React.FC<InvoiceListProps> = ({ heading = true }) => {
             </tr>
           </thead>
           <tbody className="text-gray-600 divide-y">
-            {invoices.map((item: any, idx: any) => (
+            {invoices.map((invoice: any, idx: any) => (
               <tr key={idx}>
-                <td className="px-6 py-4 whitespace-nowrap">#{item.id}</td>
+                <td className="px-6 py-4 whitespace-nowrap">#{invoice.id}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  {item.client.name}
+                  {invoice.client.name}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span
                     className={`px-3 py-2 rounded-full font-semibold text-xs ${
-                      item.status == 'Paid'
+                      invoice.status == 'Paid'
                         ? 'text-green-600 bg-green-100'
                         : 'text-red-600 bg-red-100'
                     }`}
                   >
-                    {item.status}
+                    {invoice.status}
                   </span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">$ {item.total}</td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  $ {invoice.total}
+                </td>
                 <td className="text-right px-6 whitespace-nowrap">
-                  <a
-                    href="javascript:void()"
+                  <button
+                    onClick={() => handleinvoiceClick(invoice)}
                     className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"
                   >
                     Edit
-                  </a>
+                  </button>
                 </td>
               </tr>
             ))}

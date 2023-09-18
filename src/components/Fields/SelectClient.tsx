@@ -9,8 +9,8 @@ const SelectClientField = () => {
     name: string | null
     id: number | null
   }>({
-    name: null,
-    id: null,
+    name: currentInvoice?.client?.name ?? null,
+    id: currentInvoice?.client?.id ?? null,
   })
 
   useEffect(() => {

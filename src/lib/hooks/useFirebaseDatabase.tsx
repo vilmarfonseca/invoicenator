@@ -48,7 +48,8 @@ const initialValues = {
 export default function useFirebaseDatabase() {
   const { authUser } = useAuth()
   const [loading, setLoading] = useState(false)
-  const [currentInvoice, setCurrentInvoice] = useState(
+  const [currentInvoice, setCurrentInvoice] = useLocalStorage(
+    'invoice',
     initialValues.currentInvoice,
   )
   const [invoices, setInvoices] = useState(initialValues.userInvoices)
@@ -56,7 +57,6 @@ export default function useFirebaseDatabase() {
     'userData',
     initialValues.userData,
   )
-
 
   useEffect(() => {
     setUserDataState(authUser, setUserData)
@@ -82,12 +82,12 @@ export default function useFirebaseDatabase() {
       newInvoice.total = newTotal
       setCurrentInvoice(newInvoice)
     }
-  }, [currentInvoice])
+  }, [currentInvoice, setCurrentInvoice])
 
   const saveInvoice = async (invoice: any) => {
     if (authUser?.uid) {
       try {
-        const data = await saveInvoiceToFB(authUser, userData, invoice)
+        const data = await saveInvoiceToFB(authUser, invoice)
         if (data) {
           setCurrentInvoice(initialValues.currentInvoice)
           return true
@@ -104,6 +104,6 @@ export default function useFirebaseDatabase() {
     currentInvoice,
     setCurrentInvoice,
     saveInvoice,
-    loading
+    loading,
   }
 }

@@ -13,8 +13,6 @@ export default function Dashboard() {
     value: ""
   })
 
-  console.log(filter)
-
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 pb-20">
       {loading ? (

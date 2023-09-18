@@ -11,8 +11,6 @@ const StatusSelectField = () => {
     ['Unpaid', 'bg-red-600', 'text-red-600'],
   ]
 
-  console.log(currentInvoice)
-
   const [selectedItem, setSelectedItem] = useState({
     item:
       menuItems.find(

@@ -42,8 +42,8 @@ const OverviewCards = ({ setFilter }: OverviewCardsProps) => {
   ]
 
   return (
-    <section className="mt-2 lg:mt-12 mx-auto max-w-screen-xl pb-20">
-      <div className="mt-2 lg:mt-12 grid gap-2 lg:gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+    <section className="mt-2 lg:mt-12 mx-auto max-w-screen-xl pb-16 md:pb-20">
+      <div className="mt-2 lg:mt-12 grid gap-2 lg:gap-10 grid-cols-2 md:grid-cols-3">
         {cards.map((item, key) => (
           <div
             key={key}

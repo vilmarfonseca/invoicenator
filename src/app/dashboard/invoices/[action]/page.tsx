@@ -32,7 +32,7 @@ export default function InvoiceActionsPage({
   } = useGlobalState()
 
   useEffect(() => {
-      setCurrentInvoice({})
+    setCurrentInvoice({})
   }, [action, setCurrentInvoice])
 
   async function redirectOnSucess() {
@@ -118,12 +118,14 @@ export default function InvoiceActionsPage({
             >
               Save
             </button>
-            <button
-              onClick={() => handleDeleteInvoice()}
-              className="block px-4 py-3 mt-2 h-full max-w-fit text-center text-white duration-200 font-medium bg-red-600 disabled:bg-gray-600 rounded-lg hover:bg-red-500 disabled:hover:bg-gray-500 active:bg-red-700 md:text-sm whitespace-nowrap"
-            >
-              Delete
-            </button>
+            {action === 'edit' && (
+              <button
+                onClick={() => handleDeleteInvoice()}
+                className="block px-4 py-3 mt-2 h-full max-w-fit text-center text-white duration-200 font-medium bg-red-600 disabled:bg-gray-600 rounded-lg hover:bg-red-500 disabled:hover:bg-gray-500 active:bg-red-700 md:text-sm whitespace-nowrap"
+              >
+                Delete
+              </button>
+            )}
           </div>
           <div className="flex items-baseline gap-2 h-full">
             <h5 className="text-gray-600 text-xl">Total:</h5>

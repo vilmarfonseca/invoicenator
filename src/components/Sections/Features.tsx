@@ -131,7 +131,7 @@ const Features = () => {
   ]
 
   return (
-    <section id="features" className="py-24">
+    <section id="features" className="py-12 lg:py-24">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

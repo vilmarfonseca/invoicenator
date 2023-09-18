@@ -1,3 +1,4 @@
+import { AuthUserType } from '@/common/types'
 import { initializeNewUser } from '@/lib/database'
 import { auth } from '@/services/firebase'
 import {
@@ -46,7 +47,7 @@ export default function useFirebaseAuth() {
       )
 
       if (response?.user?.uid) {
-        initializeNewUser(response.user)
+        initializeNewUser(response.user as AuthUserType)
       }
     } catch (error) {
       console.error('Error during signup:', error)

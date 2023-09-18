@@ -1,8 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Invoicenator - Invoice managing app built with NextJS 13
 
-## Getting Started
+InvoicePro is a versatile and user-friendly invoicing application designed to simplify your financial management tasks. Whether you're a freelancer, small business owner, or a growing enterprise, our app empowers you to take control of your invoicing process with ease.
 
-First, run the development server:
+- [Invoicenator Live Preview](https://invoicenator.vercel.app/)
+
+## Built with
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" height="64" width="64"/>
+<img    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"  height="64" width="64"/>
+<img    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original-wordmark.svg" height="64" width="64"/>
+<img    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="64" width="64"/>
+<img    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="64" width="64"/>
+<img    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="64" width="64"/>
+
+## Installation and Setup
+
+To run Invoicenator on your local machine, follow these steps:
+
+Ensure you have Node.js and npm (Node Package Manager) installed on your system. It's recommended to use Node v18.0 or higher.
+
+### Clone the repository:
+
+```bash
+git clone https://github.com/your-username/invoicenator.git
+
+cd invoicenator
+```
+
+### Install the required dependencies:
+
+```bash
+npm install
+```
+
+### Create a copy from `.env.example` and rename it to `.env.local`
+
+```bash
+cp .env.example .env.local
+```
+
+### Start the development server:
+
+```bash
+npm start
+```
+
+Open your web browser and visit http://localhost:3000 to access Invoicenator.
+
+## Deployment
+
+This project is deployed using Vercel.
+
+## Available Scripts
+
+Running development server:
 
 ```bash
 npm run dev
@@ -12,23 +63,30 @@ yarn dev
 pnpm dev
 ```
 
+ESLint and/or Format with Prettier using: 
+
+```bash
+npm run lint
+# or
+npm run lint:fix
+# or
+npm run format
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Future Work
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+We have a few items listed for future work that weren't addressed for now due to the availability.
 
-## Learn More
+- Add jest testing into individual components.
+- Generate PDF Invoices with React-PDF
+- Different types of login (e.g. Google, Facebook, etc)
+- Save user name and settings
+- Dark mode
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Invoicenator is released under the MIT License. You are free to use, modify, and distribute this project as per the terms of the license.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Happy invoicing with Invoicenator! If you have any questions or need assistance, please don't hesitate to reach out to us.

@@ -16,7 +16,7 @@ export default function Dashboard() {
   console.log(filter)
 
   return (
-    <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+    <div className="max-w-screen-xl mx-auto px-4 md:px-8 pb-20">
       {loading ? (
         <div className="text-black flex justify-center items-center h-[100vh]">
           <LoadingSpinner />

@@ -19,7 +19,7 @@ export default function Invoices() {
     <>
       {!loading && invoices.length > 0 ? (
         <div>
-          <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+          <div className="max-w-screen-xl mx-auto px-4 md:px-8 pb-20">
             <div className="items-start justify-between py-4 border-b md:flex">
               <div className="max-w-lg">
                 <h3 className="text-gray-800 text-2xl font-bold">Invoices</h3>

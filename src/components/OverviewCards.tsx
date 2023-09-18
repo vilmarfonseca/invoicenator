@@ -42,8 +42,8 @@ const OverviewCards = ({ setFilter }: OverviewCardsProps) => {
   ]
 
   return (
-    <section className="mt-12 mx-auto max-w-screen-xl pb-20">
-      <div className="mt-12 grid gap-10 sm:grid-cols-3">
+    <section className="mt-2 lg:mt-12 mx-auto max-w-screen-xl pb-20">
+      <div className="mt-2 lg:mt-12 grid gap-2 lg:gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {cards.map((item, key) => (
           <div
             key={key}
@@ -57,9 +57,9 @@ const OverviewCards = ({ setFilter }: OverviewCardsProps) => {
           >
             <div className="p-5">
               <p className="text-gray-400 text-sm mb-2">{item.eyebrow}</p>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 lg:gap-4">
                 <div className={`${item.textColor}`}>{item.icon}</div>
-                <h3 className={`text-4xl ${item.textColor}`}>
+                <h3 className={`md:text-xl lg:text-2xl xl:text-4xl ${item.textColor}`}>
                   {item.displayValue}
                 </h3>
               </div>

@@ -66,7 +66,7 @@ export default function InvoiceActionsPage({
   }
 
   return (
-    <div className="max-w-screen-xl mx-auto px-4 md:px-8 pb-16">
+    <div className="max-w-screen-xl mx-auto px-4 md:px-8 pb-20">
       <div className="items-start justify-between border-b md:flex">
         <div>
           <h3 className="text-gray-800 text-2xl font-bold py-4 capitalize">

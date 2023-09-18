@@ -22,7 +22,7 @@ export default function DashboardLayout({
     return (
       <>
         <Sidebar />
-        <main className="ml-80 w-[calc(100vw-20rem)] h-[100vh] py-10">
+        <main className="ml-60 lg:ml-80 w-[calc(100vw-16rem)] lg:w-[calc(100vw-20rem)] h-[100vh] py-10">
           {children}
         </main>
       </>

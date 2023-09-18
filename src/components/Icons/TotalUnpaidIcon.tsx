@@ -6,7 +6,7 @@ export default function TotalUnpaidIcon() {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="w-10 h-10"
+      className="w-5 lg:w-10 h-5 lg:h-10"
     >
       <path
         strokeLinecap="round"

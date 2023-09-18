@@ -1,24 +1,24 @@
 // AuthUSer
-type AuthUserType = {
+export type AuthUserType = {
   uid: string
   email: string
 }
 
 // Client
-type ClientType = {
+export type ClientType = {
   name: string
   id: number
 }
 
 // Invoice
-type InvoiceItemType = {
+export type InvoiceItemType = {
   name: string
   description: string
   quantity: string
   price: string
 }
 
-type InvoiceType = {
+export type InvoiceType = {
   client: ClientType
   dueDate: string
   id: number

@@ -1,38 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { useGlobalState } from "@/context/globalStateContext";
-import DeleteIcon from "@/components/Icons/DeleteIcon";
+import React, { useEffect, useState } from 'react'
+import { useGlobalState } from '@/context/globalStateContext'
+import DeleteIcon from '@/components/Icons/DeleteIcon'
 
-const InvoiceItemsFieldGroup = () => {
-  const { currentInvoice, setCurrentInvoice } = useGlobalState();
+const InvoiceItemsGroup = () => {
+  const { currentInvoice, setCurrentInvoice } = useGlobalState()
   const [items, setItems] = useState<{ [key: string]: string }[]>(
     currentInvoice?.items ?? [
-      { name: "", description: "", quantity: "", price: "" },
+      { name: '', description: '', quantity: '', price: '' },
     ],
-  );
+  )
 
   const handleAddItem = () => {
-    setItems([
-      ...items,
-      { name: "", description: "", quantity: "", price: "" },
-    ]);
-  };
+    setItems([...items, { name: '', description: '', quantity: '', price: '' }])
+  }
 
   const handleRemoveItem = (index: number) => {
-    const updatedItems = [...items];
-    updatedItems.splice(index, 1);
-    setItems(updatedItems);
-  };
+    const updatedItems = [...items]
+    updatedItems.splice(index, 1)
+    setItems(updatedItems)
+  }
 
   const handleInputChange = (index: number, field: string, value: string) => {
-    const updatedItems = [...items];
-    updatedItems[index][field] = value;
-    setItems(updatedItems);
-  };
+    const updatedItems = [...items]
+    updatedItems[index][field] = value
+    setItems(updatedItems)
+  }
 
   useEffect(() => {
     const newItems = items.filter(
       (item) => item.price && item.quantity && item.name,
-    );
+    )
 
     if (newItems.length > 0) {
       setCurrentInvoice({
@@ -40,10 +37,10 @@ const InvoiceItemsFieldGroup = () => {
         ...{
           items: newItems,
         },
-      });
+      })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items]);
+  }, [items])
 
   return (
     <div className="flex flex-col ga-6 justify-between items-baseline w-full">
@@ -56,7 +53,7 @@ const InvoiceItemsFieldGroup = () => {
               className="w-full px-3 max-w-xs mt-2 py-2 text-gray-500 bg-white border rounded-md shadow-sm focus:border-indigo-600"
               placeholder="Name"
               value={item.name}
-              onChange={(e) => handleInputChange(index, "name", e.target.value)}
+              onChange={(e) => handleInputChange(index, 'name', e.target.value)}
             />
           </div>
           <div className="w-full">
@@ -67,7 +64,7 @@ const InvoiceItemsFieldGroup = () => {
               placeholder="Description"
               value={item.description}
               onChange={(e) =>
-                handleInputChange(index, "description", e.target.value)
+                handleInputChange(index, 'description', e.target.value)
               }
             />
           </div>
@@ -79,7 +76,7 @@ const InvoiceItemsFieldGroup = () => {
               placeholder="0"
               value={item.quantity}
               onChange={(e) =>
-                handleInputChange(index, "quantity", e.target.value)
+                handleInputChange(index, 'quantity', e.target.value)
               }
             />
           </div>
@@ -94,7 +91,7 @@ const InvoiceItemsFieldGroup = () => {
                 placeholder="0.00"
                 value={item.price}
                 onChange={(e) =>
-                  handleInputChange(index, "price", e.target.value)
+                  handleInputChange(index, 'price', e.target.value)
                 }
                 className="w-full pl-8 py-2 appearance-none bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
@@ -118,7 +115,7 @@ const InvoiceItemsFieldGroup = () => {
         Add Item
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default InvoiceItemsFieldGroup;
+export default InvoiceItemsGroup

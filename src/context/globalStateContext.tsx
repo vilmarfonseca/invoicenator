@@ -1,4 +1,5 @@
 "use client";
+import { InvoiceType } from "@/common/types";
 import useFirebaseDatabase from "@/lib/hooks/useFirebaseDatabase";
 import { createContext, useContext } from "react";
 
@@ -7,6 +8,7 @@ type GlobalContextType = {
   currentInvoice: InvoiceType;
   setCurrentInvoice: Function;
   saveInvoice: Function;
+  deleteInvoice: Function;
   invoices: Array<InvoiceType>;
 };
 
@@ -25,6 +27,7 @@ export const GlobalContext = createContext<GlobalContextType>({
   },
   setCurrentInvoice: () => {},
   saveInvoice: () => {},
+  deleteInvoice: () => {},
   invoices: [],
 });
 

@@ -1,19 +1,16 @@
-import InvoiceList from '@/components/InvoiceList'
 import { database } from '@/services/firebase'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 
-export const initializeNewUser = async (currentUser: AuthUserType) => {
+export const initializeNewUser = async (user: AuthUserType) => {
   try {
-    if (!currentUser || !currentUser.uid) {
+    if (!user || !user.uid) {
       throw new Error('Invalid user object or missing UID.')
     }
 
-    // Initialize User Data
-    const usersRef = doc(database, 'userData', currentUser.uid)
+    const usersRef = doc(database, 'userData', user.uid)
     await setDoc(usersRef, { name: '' })
 
-    // Initializ User Invoices
-    const invoicesRef = doc(database, 'invoices', currentUser.uid)
+    const invoicesRef = doc(database, 'invoices', user.uid)
     await setDoc(invoicesRef, { invoices: [] })
   } catch (error) {
     console.error('Error while initializing new user:', error)
@@ -22,15 +19,15 @@ export const initializeNewUser = async (currentUser: AuthUserType) => {
 }
 
 export const getCollection = async (
-  currentUser: AuthUserType,
+  user: AuthUserType,
   collectionName: string,
 ) => {
   try {
-    if (!currentUser || !currentUser.uid) {
+    if (!user || !user.uid) {
       throw new Error('Invalid user object or missing UID.')
     }
 
-    const docRef = doc(database, collectionName, currentUser.uid)
+    const docRef = doc(database, collectionName, user.uid)
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
@@ -78,6 +75,35 @@ export const saveInvoiceToFB = async (
     return true
   } catch (error) {
     console.error('Error while saving invoice to Firebase', error)
+    throw error
+  }
+}
+
+export const deleteInvoiceFromFB = async (
+  user: AuthUserType,
+  newInvoice: InvoiceType,
+) => {
+  try {
+    if (!user || !user.uid) {
+      throw new Error('Invalid user object or missing UID.')
+    }
+
+    const oldInvoicesList = await getCollection(user, 'invoices')
+    const newList = [...oldInvoicesList?.invoices]
+
+    const idxToRemove = newList.findIndex((item) => item.id === newInvoice.id)
+
+    if (idxToRemove !== -1) {
+      newList.splice(idxToRemove, 1)
+
+      const usersRef = doc(database, 'invoices', user.uid)
+      await setDoc(usersRef, { invoices: newList })
+      return true
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('Error while removing invoice from Firebase', error)
     throw error
   }
 }

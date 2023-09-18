@@ -1,26 +1,37 @@
+import { motion } from 'framer-motion'
+
 const Customers = () => {
   const stats = [
     {
-      data: "35K",
-      title: "Customers",
+      data: '35K',
+      title: 'Customers',
     },
     {
-      data: "1M+",
-      title: "Invoices generated",
+      data: '1M+',
+      title: 'Invoices generated',
     },
     {
-      data: "40+",
-      title: "Countries",
+      data: '40+',
+      title: 'Countries',
     },
     {
-      data: "30M+",
-      title: "Total revenue",
+      data: '30M+',
+      title: 'Total revenue',
     },
-  ];
+  ]
 
   return (
     <section id="customers" className="py-14">
-      <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{
+          delay: 0.25,
+          duration: 1,
+        }}
+        className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8"
+      >
         <div className="max-w-2xl mx-auto text-center">
           <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
             Our customers are always happy
@@ -41,9 +52,9 @@ const Customers = () => {
             ))}
           </ul>
         </div>
-      </div>
+      </motion.div>
     </section>
-  );
-};
+  )
+}
 
-export default Customers;
+export default Customers

@@ -1,11 +1,19 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 const Hero = () => {
   return (
     <section>
       <div className="max-w-screen-xl mx-auto px-4 py-14 lg:py-28 gap-12 text-gray-600 md:px-8">
-        <div className="space-y-5 max-w-4xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 1,
+          }}
+          className="space-y-5 max-w-4xl mx-auto text-center"
+        >
           <h1 className="text-sm text-indigo-600 font-medium">
             Manage your business like a pro
           </h1>
@@ -28,8 +36,16 @@ const Hero = () => {
               Start today
             </Link>
           </div>
-        </div>
-        <div className="mt-14">
+        </motion.div>
+
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            duration: 1,
+          }}
+          className="mt-14"
+        >
           <Image
             src="/images/showcase.png"
             className="w-full"
@@ -37,7 +53,7 @@ const Hero = () => {
             width={1920}
             height={1080}
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   )

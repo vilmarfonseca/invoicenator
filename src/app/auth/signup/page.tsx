@@ -3,6 +3,7 @@
 import SignUpForm from "@/components/Forms/SignupForm";
 import Logo from "@/components/Logo";
 import { AuthContext } from "@/context/authContext";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
@@ -17,7 +18,12 @@ const SignUp = () => {
 
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center bg-gray-50 sm:px-4">
-      <div className="w-full space-y-6 text-gray-600 sm:max-w-md">
+      <motion.div
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          duration: 0.5,
+        }} className="w-full space-y-6 text-gray-600 sm:max-w-md">
         <div className="text-center">
           <Link href="/">
             <div className="flex justify-center">
@@ -44,7 +50,7 @@ const SignUp = () => {
             </Link>
           </p>
         </div>
-      </div>
+      </motion.div>
     </main>
   );
 };

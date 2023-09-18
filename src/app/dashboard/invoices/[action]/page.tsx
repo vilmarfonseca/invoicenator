@@ -6,7 +6,9 @@ import SelectClient from '@/components/Fields/SelectClient'
 import SelectStatus from '@/components/Fields/SelectStatus'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import { useGlobalState } from '@/context/globalStateContext'
-import { notFound, useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
+import { notFound, usePathname, useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 interface InvoiceActionsPageProps {
   params: {
@@ -29,9 +31,13 @@ export default function InvoiceActionsPage({
     loading,
   } = useGlobalState()
 
+  useEffect(() => {
+      setCurrentInvoice({})
+  }, [action, setCurrentInvoice])
+
   async function redirectOnSucess() {
-    router.push('/dashboard/invoices')
     setCurrentInvoice({})
+    router.push('/dashboard/invoices')
   }
 
   async function handleSaveInvoice() {
@@ -66,7 +72,14 @@ export default function InvoiceActionsPage({
   }
 
   return (
-    <div className="max-w-screen-xl mx-auto px-4 md:px-8 pb-20">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 0.5,
+      }}
+      className="max-w-screen-xl mx-auto px-4 md:px-8 pb-20"
+    >
       <div className="items-start justify-between border-b md:flex">
         <div>
           <h3 className="text-gray-800 text-2xl font-bold py-4 capitalize">
@@ -120,6 +133,6 @@ export default function InvoiceActionsPage({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }

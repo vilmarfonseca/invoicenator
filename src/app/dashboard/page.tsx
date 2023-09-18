@@ -1,16 +1,17 @@
-"use client";
-import InvoiceList from "@/components/InvoiceList";
-import LoadingSpinner from "@/components/LoadingSpinner";
-import NoInvoices from "@/components/NoInvoices";
-import OverviewCards from "@/components/OverviewCards";
-import { useGlobalState } from "@/context/globalStateContext";
-import { useState } from "react";
+'use client'
+import InvoiceList from '@/components/InvoiceList'
+import LoadingSpinner from '@/components/LoadingSpinner'
+import NoInvoices from '@/components/NoInvoices'
+import OverviewCards from '@/components/OverviewCards'
+import { useGlobalState } from '@/context/globalStateContext'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 export default function Dashboard() {
-  const { invoices, loading } = useGlobalState();
+  const { invoices, loading } = useGlobalState()
   const [filter, setFilter] = useState({
     key: '',
-    value: ""
+    value: '',
   })
 
   return (
@@ -22,16 +23,22 @@ export default function Dashboard() {
       ) : !loading && invoices?.length === 0 ? (
         <NoInvoices />
       ) : (
-        <>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 0.5,
+          }}
+        >
           <div className="items-start justify-between py-4 border-b md:flex">
             <div>
               <h3 className="text-gray-800 text-2xl font-bold">Overview</h3>
             </div>
           </div>
           <OverviewCards setFilter={setFilter} />
-          <InvoiceList setFilter={setFilter} filter={filter}/>
-        </>
+          <InvoiceList setFilter={setFilter} filter={filter} />
+        </motion.div>
       )}
     </div>
-  );
+  )
 }

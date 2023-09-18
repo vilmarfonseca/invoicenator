@@ -1,8 +1,17 @@
-import Link from "next/link";
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 const NoInvoices = () => {
   return (
-    <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-start h-screen md:px-8">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        delay: 1,
+        duration: 0.5,
+      }}
+      className="max-w-screen-xl mx-auto px-4 flex items-center justify-start h-screen md:px-8"
+    >
       <div className="max-w-lg mx-auto space-y-3 text-center">
         <h3 className="text-indigo-600 font-semibold">No Content Found</h3>
         <p className="text-gray-800 text-4xl font-semibold sm:text-5xl">
@@ -20,8 +29,8 @@ const NoInvoices = () => {
           </Link>
         </div>
       </div>
-    </div>
-  );
-};
+    </motion.div>
+  )
+}
 
-export default NoInvoices;
+export default NoInvoices

@@ -1,55 +1,66 @@
+import { motion } from 'framer-motion'
+
 const Prices = () => {
   const plans = [
     {
-      name: "Basic plan",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      name: 'Basic plan',
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       price: 12,
       isMostPop: false,
       features: [
-        "Curabitur faucibus",
-        "massa ut pretium maximus",
-        "Sed posuere nisi",
-        "Pellentesque eu nibh et neque",
-        "Suspendisse a leo",
-        "Praesent quis venenatis ipsum",
-        "Duis non diam vel tortor",
+        'Curabitur faucibus',
+        'massa ut pretium maximus',
+        'Sed posuere nisi',
+        'Pellentesque eu nibh et neque',
+        'Suspendisse a leo',
+        'Praesent quis venenatis ipsum',
+        'Duis non diam vel tortor',
       ],
     },
     {
-      name: "Startup",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      name: 'Startup',
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       price: 35,
       isMostPop: true,
       features: [
-        "Curabitur faucibus",
-        "massa ut pretium maximus",
-        "Sed posuere nisi",
-        "Pellentesque eu nibh et neque",
-        "Suspendisse a leo",
-        "Praesent quis venenatis ipsum",
-        "Duis non diam vel tortor",
+        'Curabitur faucibus',
+        'massa ut pretium maximus',
+        'Sed posuere nisi',
+        'Pellentesque eu nibh et neque',
+        'Suspendisse a leo',
+        'Praesent quis venenatis ipsum',
+        'Duis non diam vel tortor',
       ],
     },
     {
-      name: "Enterprise",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      name: 'Enterprise',
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       price: 60,
       isMostPop: false,
       features: [
-        "Curabitur faucibus",
-        "massa ut pretium maximus",
-        "Sed posuere nisi",
-        "Pellentesque eu nibh et neque",
-        "Suspendisse a leo",
-        "Praesent quis venenatis ipsum",
-        "Duis non diam vel tortor",
+        'Curabitur faucibus',
+        'massa ut pretium maximus',
+        'Sed posuere nisi',
+        'Pellentesque eu nibh et neque',
+        'Suspendisse a leo',
+        'Praesent quis venenatis ipsum',
+        'Duis non diam vel tortor',
       ],
     },
-  ];
+  ]
 
   return (
     <section id="pricing" className="py-24">
-      <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{
+          delay: 0.75,
+          duration: 1,
+        }}
+        className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8"
+      >
         <div className="relative max-w-xl mx-auto sm:text-center">
           <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
             Pricing for all sizes
@@ -66,7 +77,7 @@ const Prices = () => {
             <div
               key={idx}
               className={`relative flex-1 flex items-stretch flex-col rounded-xl border-2 mt-6 sm:mt-0 ${
-                item.isMostPop ? "mt-10" : ""
+                item.isMostPop ? 'mt-10' : ''
               }`}
             >
               {item.isMostPop ? (
@@ -74,12 +85,12 @@ const Prices = () => {
                   Most popular
                 </span>
               ) : (
-                ""
+                ''
               )}
               <div className="p-8 space-y-4 border-b">
                 <span className="text-indigo-600 font-medium">{item.name}</span>
                 <div className="text-gray-800 text-3xl font-semibold">
-                  ${item.price}{" "}
+                  ${item.price}{' '}
                   <span className="text-xl text-gray-600 font-normal">/mo</span>
                 </div>
                 <p>{item.desc}</p>
@@ -112,9 +123,9 @@ const Prices = () => {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
-  );
-};
+  )
+}
 
-export default Prices;
+export default Prices

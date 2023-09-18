@@ -1,24 +1,31 @@
-"use client";
-import InvoiceList from "@/components/InvoiceList";
-import LoadingSpinner from "@/components/LoadingSpinner";
-import NoInvoices from "@/components/NoInvoices";
-import { useGlobalState } from "@/context/globalStateContext";
-import Link from "next/link";
+'use client'
+import InvoiceList from '@/components/InvoiceList'
+import LoadingSpinner from '@/components/LoadingSpinner'
+import NoInvoices from '@/components/NoInvoices'
+import { useGlobalState } from '@/context/globalStateContext'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 export default function Invoices() {
-  const { invoices, loading } = useGlobalState();
+  const { invoices, loading } = useGlobalState()
 
   if (loading) {
     return (
       <div>
         <LoadingSpinner />
       </div>
-    );
+    )
   }
   return (
     <>
       {!loading && invoices.length > 0 ? (
-        <div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 0.5,
+          }}
+        >
           <div className="max-w-screen-xl mx-auto px-4 md:px-8 pb-20">
             <div className="items-start justify-between py-4 border-b md:flex">
               <div className="max-w-lg">
@@ -38,10 +45,10 @@ export default function Invoices() {
             </div>
             <InvoiceList heading={false} />
           </div>
-        </div>
+        </motion.div>
       ) : (
         <NoInvoices />
       )}
     </>
-  );
+  )
 }

@@ -9,10 +9,12 @@ type GlobalContextType = {
   currentInvoice: InvoiceType
   currentClient: ClientType
   invoices: Array<InvoiceType>
+  setInvoices: Function
   saveInvoice: Function
   deleteInvoice: Function
   setCurrentInvoice: Function
   clients: Array<ClientType>
+  setClients: Function
   saveClient: Function
   deleteClient: Function
   setCurrentClient: Function
@@ -37,10 +39,12 @@ export const initialValues = {
     id: 0,
   },
   invoices: [],
+  setInvoices: () => {},
   saveInvoice: () => {},
   deleteInvoice: () => {},
   setCurrentInvoice: () => {},
   clients: [],
+  setClients: () => {},
   saveClient: () => {},
   deleteClient: () => {},
   setCurrentClient: () => {},

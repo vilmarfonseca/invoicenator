@@ -1,13 +1,13 @@
 "use client";
 
-import useFirebaseAuth from "@/lib/hooks/useFirebaseAuth";
+import { useAuth } from "@/context/authContext";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import LoadingSpinner from "../LoadingSpinner";
 
 const LoginForm = () => {
-  const { login } = useFirebaseAuth();
+  const { login } = useAuth();
 
   const router = useRouter();
 

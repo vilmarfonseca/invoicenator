@@ -146,8 +146,10 @@ const useFirebaseDatabase = () => {
 
   return {
     invoices,
+    setInvoices,
     currentInvoice,
     clients,
+    setClients,
     currentClient,
     loading,
     saveInvoice,

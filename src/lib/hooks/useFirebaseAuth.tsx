@@ -1,4 +1,5 @@
 import { AuthUserType } from '@/common/types'
+import { initialValues, useGlobalState } from '@/context/globalStateContext'
 import { initializeNewUser } from '@/lib/databse'
 import { auth } from '@/services/firebase'
 import {
@@ -18,6 +19,14 @@ export default function useFirebaseAuth() {
   const router = useRouter()
   const [authUser, setAuthUser] = useState<null | AuthUserType>(null)
   const [loading, setLoading] = useState(true)
+  const { setCurrentClient, setCurrentInvoice, setClients, setInvoices } = useGlobalState()
+
+  const resetGlobalState = async () => {
+      setCurrentClient(initialValues.currentClient)
+      setCurrentInvoice(initialValues.currentInvoice)
+      setClients(initialValues.clients)
+      setInvoices(initialValues.invoices)
+  }
 
   const authStateChanged = async (authState: User | null) => {
     if (!authState) {
@@ -65,8 +74,8 @@ export default function useFirebaseAuth() {
     try {
       await auth.signOut()
       setAuthUser(null)
-      setLoading(true)
-      router.push('/auth/login')
+      resetGlobalState()
+      router.push('/')
     } catch (error) {
       console.error('Error during logout:', error)
     }

@@ -4,7 +4,7 @@ import InvoicesIcon from "@/components/Icons/InvoicesIcon";
 import LogoutIcon from "@/components/Icons/LogoutIcon";
 import UsersIcon from "@/components/Icons/UsersIcon";
 import Logo from "@/components/Logo";
-import useFirebaseAuth from "@/lib/hooks/useFirebaseAuth";
+import { useAuth } from "@/context/authContext";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -28,7 +28,7 @@ const Sidebar = () => {
     },
   ];
 
-  const { logout, authUser } = useFirebaseAuth();
+  const { logout, authUser } = useAuth();
   const pathname = usePathname();
 
   return (

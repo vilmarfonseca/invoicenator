@@ -1,11 +1,10 @@
 'use client'
-import { AuthContext } from '@/context/authContext'
+import { AuthContext, useAuth } from '@/context/authContext'
 import useDeviceType from '@/lib/hooks/useDeviceType'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
 import { useContext, useState } from 'react'
 import Logo from './Logo'
-import useFirebaseAuth from '@/lib/hooks/useFirebaseAuth'
 
 type NavigationItem = {
   title: string
@@ -20,7 +19,7 @@ const InternalMobileHeader = () => {
   const { currentUser }: any = useContext(AuthContext)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { isDesktop, isTablet } = useDeviceType()
-  const { logout } = useFirebaseAuth()
+  const { logout } = useAuth()
 
   async function handleLogout() {
     setMobileOpen(false)
@@ -42,7 +41,7 @@ const InternalMobileHeader = () => {
       >
         <div className="items-center gap-x-8 px-4 max-w-screen-xl mx-auto md:flex md:px-8">
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <Link href="/">
+            <Link href="/dashboard">
               <Logo />
             </Link>
             <motion.div

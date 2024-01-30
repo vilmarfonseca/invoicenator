@@ -1,6 +1,6 @@
 # Invoicenator - Invoice managing app built with NextJS 13
 
-InvoicePro is a versatile and user-friendly invoicing application designed to simplify your financial management tasks. Whether you're a freelancer, small business owner, or a growing enterprise, our app empowers you to take control of your invoicing process with ease.
+Invoicenator is a versatile and user-friendly invoicing application designed to simplify your financial management tasks. Whether you're a freelancer, small business owner, or a growing enterprise, our app empowers you to take control of your invoicing process with ease.
 
 - [Invoicenator Live Preview](https://invoicenator.vercel.app/)
 
